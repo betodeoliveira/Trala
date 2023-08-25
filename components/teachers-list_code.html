@@ -1,0 +1,12 @@
+<script>
+    var Webflow = Webflow || [];
+    Webflow.push(function () {
+        $(".teachers_layout").each(function () {
+            let parentTeachingStyle = $(this).find("[teachers-filter-wrapper='teaching-style']");
+            $(this).find("[filter-type='Teaching Style']").appendTo(parentTeachingStyle);
+
+            let parentGenre = $(this).find("[teachers-filter-wrapper='genre']");
+            $(this).find("[filter-type='Genre']").appendTo(parentGenre);
+        });
+    });
+</script>
