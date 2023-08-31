@@ -8,11 +8,11 @@
     }
 
     /* Focus state style for keyboard navigation for the focusable elements */
-    *[tabindex]:focus-visible,
+    /* *[tabindex]:focus-visible,
     input[type="file"]:focus-visible {
         outline: 0.125rem solid #4d65ff;
         outline-offset: 0.125rem;
-    }
+    } */
 
     /* Get rid of top margin on first element in any rich text element */
     .w-richtext> :not(div):first-child,
@@ -319,5 +319,22 @@
             padding-right: 1.25rem;
             font-size: 0.875rem;
         }
+    }
+
+    /* Filter */
+    .filter_checkbox-field .filter_checkbox-icon {
+        opacity: 0;
+    }
+
+    .filter_checkbox-field .filter_checkbox-label {
+        margin-left: 0rem;
+    }
+
+    .filter_checkbox-field.is-active .filter_checkbox-icon {
+        opacity: 1;
+    }
+
+    .filter_checkbox-field.is-active .filter_checkbox-label {
+        margin-left: 2rem;
     }
 </style>
