@@ -2,7 +2,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <!-- ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<!-- Swiper Library -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
+<!-- Run this code -->
 <script>
     gsap.registerPlugin(ScrollTrigger);
+    // [ Swiper JS ]
+    $(".swiper_component").each(function () {
+        const swiper = new Swiper($(this).find(".swiper")[0], {
+            slidesPerView: "auto",
+            pagination: {
+                el: $(this).find(".swiper_bullets-wrapper")[0],
+                bulletActiveClass: "is-active",
+                bulletClass: "swiper_bullet",
+                bulletElement: "button",
+                clickable: true
+            },
+            navigation: {
+                nextEl: $(this).find("[swiper-next]")[0],
+                prevEl: $(this).find("[swiper-prev]")[0],
+                disabledClass: "is-disabled"
+            }
+        });
+    });
 </script>
