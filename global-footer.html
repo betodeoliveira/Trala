@@ -50,21 +50,19 @@
     });
 
 
-    // [ Stories Interaction ]
-    $(".stories_layout").each(function() {
+    // [ Featured Stories Interaction ]
+    $(".featured-stories_layout").each(function() {
 
         let storiesTimeline = gsap.timeline({ paused: true, ease: "power2.out" });
 
-        storiesTimeline.set($(this).find(".stories_lightbox-link"), { display: "flex" });
-        storiesTimeline.fromTo($(this).find(".stories_lightbox-link"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
+        storiesTimeline.set($(this).find(".featured-stories_lightbox-link"), { display: "flex" });
+        storiesTimeline.fromTo($(this).find(".featured-stories_lightbox-link"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
         
         storiesTimeline.to($(this).find(".teachers-filters_type-wrapper"), { y: "3rem", opacity: 0, duration: 0.5, ease: "back.inOut(1.7)", stagger: { from: "end", amount: 0.1 }}, "<");
 
-        storiesTimeline.set($(this).find(".stories_button-wrapper"), { display: "block" });
-        storiesTimeline.fromTo($(this).find(".stories_button-wrapper"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
-        storiesTimeline.fromTo($(this).find("[stories-lightbox-button]"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
-        
-        
+        storiesTimeline.set($(this).find(".featured-stories_button-wrapper"), { display: "block" });
+        storiesTimeline.fromTo($(this).find(".featured-stories_button-wrapper"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
+        storiesTimeline.fromTo($(this).find("[featured-stories-lightbox-button]"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
 
         $(this).on("mouseenter", function() {
             storiesTimeline.play();

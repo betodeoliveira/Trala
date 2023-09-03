@@ -31,7 +31,7 @@
             $(targetNode).find("[filter-type='Genre']").appendTo(parentGenre);
             // Create a timeout to stop observing after a period of time
             observerTimeout = setTimeout(() => {
-                console.log("stop observing");
+                // console.log("stop observing");
                 observer.disconnect();
             }, 2000);
         }
