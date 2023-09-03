@@ -27,7 +27,30 @@
         });
     });
 
-    // [ Stories Animation ]
+    // [ Genre Marquee ]
+    $(".genre-marquee_component").each(function() {
+        let marqueeList = $(this).find(".genre-marquee_list");
+        let marqueeListWrapper = $(this).find(".genre-marquee_wrapper");
+        $(marqueeList).clone().appendTo(marqueeListWrapper);
+        $(marqueeList).clone().appendTo(marqueeListWrapper);
+
+        let genresAmount = $(this).find(".genre-marquee_item").length;
+        let duration = 30 * (genresAmount / 20);
+
+        let genreMarqueeTimeline = gsap.timeline({ repeat: -1 });
+        genreMarqueeTimeline.to(marqueeList, {x: "-100%", duration: duration, ease: "none"});
+
+        $(marqueeList).on("mouseenter", function() {
+            genreMarqueeTimeline.pause();
+        });
+
+        $(marqueeList).on("mouseleave", function() {
+            genreMarqueeTimeline.resume();
+        });
+    });
+
+
+    // [ Stories Interaction ]
     $(".stories_layout").each(function() {
 
         let storiesTimeline = gsap.timeline({ paused: true, ease: "power2.out" });

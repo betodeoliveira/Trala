@@ -2,10 +2,10 @@
     var Webflow = Webflow || [];
     Webflow.push(function () {
         // Select the node that will be observed for mutations
-        const targetNode = document.getElementById("some-id");
+        const targetNode = document.getElementById("{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}");
         let observerTimeout;
 
-        // Options for the observer (which mutations to observe)
+				// Options for the observer (which mutations to observe)
         const config = { attributes: true, childList: true, subtree: true };
         // Callback function to execute when mutations are observed
         const callback = (mutationList, observer) => {
