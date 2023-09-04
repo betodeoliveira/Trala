@@ -1,3 +1,4 @@
+<!-- Hero -->
 <script>
     // Create timeline 01
     let bg01Timeline = gsap.timeline({ paused: true, ease: "power1.out" });
@@ -81,4 +82,22 @@
         gsap.to(".home-hero_window-03-image", { opacity: opacityWindow3, duration: 0.3 });
         gsap.to(".home-hero_window-04-image", { opacity: opacityWindow4, duration: 0.3 });
     }
+</script>
+
+<!-- Community Numbers -->
+<script>
+    $(".community-numbers_item").each(function() {
+        let timeline = gsap.timeline({ paused: true,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: $(this),
+                start: "bottom bottom",
+                end: "+=0",
+                toggleActions:"play none none none"
+            }
+    });
+
+        timeline.fromTo($(this).find("[community-number-title]"), { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1, stagger: 0.125 });
+        timeline.fromTo($(this).find(".text-size-large"), { opacity: 0, y: "2rem" }, { opacity: 1, y: "0rem", duration: 0.5 }, "<+0.5");
+    });
 </script>
