@@ -1,20 +1,56 @@
 <script>
+    // Create timeline 01
     let bg01EnterTimeline = gsap.timeline({ paused: true, ease: "power1.out" });
-
+    // Configurate timeline 01
     bg01EnterTimeline.set(".home-hero_bg-01-wrapper", { display: "flex" });
-
     bg01EnterTimeline.fromTo(".home-hero_bg-01_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
-
     bg01EnterTimeline.fromTo(".home-hero_bg-01_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.15");
-
     bg01EnterTimeline.fromTo(".home-hero_bg-01_element-02", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
     bg01EnterTimeline.fromTo(".home-hero_bg-01_element-02", { rotationZ: 6 }, { rotationZ: 0, duration: 1, ease: "elastic.out(1, 0.3)"}, "<");
-
     bg01EnterTimeline.fromTo(".home-hero_bg-01_element-03", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
     bg01EnterTimeline.fromTo(".home-hero_bg-01_element-03", { y: "-4rem" }, { y: "0rem", duration: 1, ease: "bounce.out"}, "<");
 
+    // Create timeline 02
+    let bg02EnterTimeline = gsap.timeline({ paused: true, ease: "power1.out" });
+    // Configurate timeline 02
+    bg02EnterTimeline.set(".home-hero_bg-02-wrapper", { display: "flex" });
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_element-02", { x: "-100%" }, { x: "0%", duration: 0.5, ease: "expo.out" }, "<+0.15");
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_element-03", { x: "100%" }, { x: "0%", duration: 0.5, ease: "expo.out" }, "<");
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.25");
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_element-04", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<");
+    bg02EnterTimeline.fromTo(".home-hero_bg-02_element-05", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<");
+
+    // Create timeline 03
+    let bg03EnterTimeline = gsap.timeline({ paused: true, ease: "power1.out" });
+    // Configurate timeline 03
+    bg03EnterTimeline.set(".home-hero_bg-03-wrapper", { display: "flex" });
+    bg03EnterTimeline.fromTo(".home-hero_bg-03_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
+    bg03EnterTimeline.fromTo(".home-hero_bg-03_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.15");
+    bg03EnterTimeline.fromTo(".home-hero_bg-03_element-02", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)"}, "<");
+    bg03EnterTimeline.fromTo(".home-hero_bg-03_element-03", { opacity: 0, x: "4rem" }, { opacity: 1, x: "0rem", duration: 0.5, ease: "sine.out" }, "<");
+
+    // Create timeline 04
+    let bg04EnterTimeline = gsap.timeline({ paused: true, ease: "power1.out" });
+    // Configurate timeline 04
+    bg04EnterTimeline.set(".home-hero_bg-04-wrapper", { display: "flex" });
+    bg04EnterTimeline.fromTo(".home-hero_bg-04_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
+    bg04EnterTimeline.fromTo(".home-hero_bg-04_element-01", { y: "-100%" }, { y: "0%", duration: 1, ease: "elastic.out(1, 0.8)" }, "<+0.15");
+    bg04EnterTimeline.fromTo("[home-hero_bg-04_element-02-star]", { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.1 }, "<");
 
     $(".home-hero_window-01-image").on("mouseenter", function () {
         bg01EnterTimeline.play();
+    });
+
+    $(".home-hero_window-02-image").on("mouseenter", function () {
+        bg02EnterTimeline.play();
+    });
+
+    $(".home-hero_window-03-image").on("mouseenter", function () {
+        bg03EnterTimeline.play();
+    });
+
+    $(".home-hero_window-04-image").on("mouseenter", function () {
+        bg04EnterTimeline.play();
     });
 </script>

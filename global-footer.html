@@ -38,7 +38,7 @@
         let duration = 30 * (genresAmount / 20);
 
         let genreMarqueeTimeline = gsap.timeline({ repeat: -1 });
-        genreMarqueeTimeline.to(marqueeList, {x: "-100%", duration: duration, ease: "none"});
+        genreMarqueeTimeline.to(".genre-marquee_list", {x: "-100%", duration: duration, ease: "none"});
 
         $(marqueeList).on("mouseenter", function() {
             genreMarqueeTimeline.pause();
