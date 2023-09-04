@@ -2,14 +2,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <!-- ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<!-- Draw SVG -->
-<script type="text/javascript"
-    src="https://uploads-ssl.webflow.com/64e4cedc6459e92500370b54/64f6409f54e53ad53109eeaa_DrawSVGPlugin.min.txt"></script>
 <!-- Swiper Library -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- Draw SVG -->
+<script type="text/javascript"
+    src="https://uploads-ssl.webflow.com/647798cf71ec2048ea89ab07/647f4232459c9dd15a7dd861_DrawSVGPlugin.min.txt"></script>
 
 <script>
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 
     // [ Swiper JS ]
     $(".swiper_component").each(function () {
@@ -74,5 +74,21 @@
         $(this).on("mouseleave", function() {
             storiesTimeline.reverse();
         });
+    });
+
+    // [ Teachers Component ]
+    $(".teachers_component").each(function() {
+        let teachersTimeline = gsap.timeline({paused: true, 
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: $(this),
+                start: "top+=250 bottom",
+                end: "+=0",
+                // markers: true,
+                toggleActions: "play none none none"
+            }
+        });
+
+        teachersTimeline.fromTo($(this).find(".teachers_wrapper"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5});
     });
 </script>
