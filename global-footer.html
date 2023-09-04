@@ -76,9 +76,9 @@
         });
     });
 
-    // [ Teachers Component ]
-    $(".teachers_component").each(function() {
-        let teachersTimeline = gsap.timeline({paused: true, 
+    // [ Slide Up Anim ]
+    $("[slide-up-trigger]").each(function() {
+        let slideUpTimeline = gsap.timeline({paused: true, 
             ease: "power4.out",
             scrollTrigger: {
                 trigger: $(this),
@@ -89,6 +89,6 @@
             }
         });
 
-        teachersTimeline.fromTo($(this).find(".teachers_wrapper"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5});
+        slideUpTimeline.fromTo($(this).find("[slide-up-target]"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5});
     });
 </script>
