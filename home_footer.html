@@ -105,9 +105,9 @@
 
 <!-- School of Music -->
 <script>
-    let musicNotessTimeline = gsap.timeline({paused:true});
-    musicNotessTimeline.fromTo(".school-of-music_music-notes", { opacity: 0 }, { opacity: 1, duration: 0.3 });
-    let timeline = gsap.timeline({
+    let sof_MusicNotesTimeline = gsap.timeline({ paused: true });
+    sof_MusicNotesTimeline.fromTo(".school-of-music_music-notes", { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    let sof_womanTimeline = gsap.timeline({
         paused: true,
         ease: "power2.out",
         scrollTrigger: {
@@ -115,10 +115,27 @@
             start: "bottom bottom",
             end: "center center",
             scrub: 1,
-            onLeave: () => musicNotessTimeline.play(),
-            onEnterBack: () => musicNotessTimeline.reverse()
+            onLeave: () => sof_MusicNotesTimeline.play(),
+            onEnterBack: () => sof_MusicNotesTimeline.reverse()
         }
     });
 
-    timeline.fromTo(".school-of-music_woman-image", { x: "100" }, { x: "0%" });
+    sof_womanTimeline.fromTo(".school-of-music_woman-image", { x: "100" }, { x: "0%" });
+</script>
+
+<!-- Trala Method -->
+<script>
+    let tralaMethodTimeline = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+            trigger: $(".trala-method_steps-list"),
+            start: "bottom bottom",
+            end: "+=0",
+            toggleActions: "play none none none"
+        }
+    });
+
+    tralaMethodTimeline.to($("#mask_trala-method_steps-dashed-line"), { drawSVG: "0% 100%", duration: 1 });
+    tralaMethodTimeline.fromTo(".trala-method_steps-item", { y: "4rem", opacity: 0 }, { y: "0rem", opacity: 1, duration: 0.5, stagger: 0.125, ease: "elastic.out(1, 0.3)" });
+
 </script>
