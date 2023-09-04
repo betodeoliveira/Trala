@@ -76,7 +76,7 @@
         });
     });
 
-    // [ Slide Up Anim ]
+    // [ Slide Up ]
     $("[slide-up-trigger]").each(function() {
         let slideUpTimeline = gsap.timeline({paused: true, 
             ease: "power4.out",
@@ -89,6 +89,22 @@
             }
         });
 
-        slideUpTimeline.fromTo($(this).find("[slide-up-target]"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5});
+        slideUpTimeline.fromTo($(this).find("[slide-up-target]"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5, stagger: 0.125});
+    });
+
+        // [ Slide Left ]
+        $("[slide-left-trigger]").each(function() {
+        let slideLeft = gsap.timeline({paused: true, 
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: $(this),
+                start: "center bottom",
+                end: "+=0",
+                // markers: true,
+                toggleActions: "play none none none"
+            }
+        });
+
+        slideLeft.fromTo($(this).find("[slide-left-target]"), {opacity: 0, x: "4rem"}, {opacity: 1, x: "0rem", duration: 0.5, stagger: 0.125});
     });
 </script>
