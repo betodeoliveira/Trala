@@ -1,0 +1,20 @@
+<script>
+    let bg01EnterTimeline = gsap.timeline({ paused: true, ease: "power1.out" });
+
+    bg01EnterTimeline.set(".home-hero_bg-01-wrapper", { display: "flex" });
+
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
+
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.15");
+
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_element-02", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_element-02", { rotationZ: 6 }, { rotationZ: 0, duration: 1, ease: "elastic.out(1, 0.3)"}, "<");
+
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_element-03", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
+    bg01EnterTimeline.fromTo(".home-hero_bg-01_element-03", { y: "-4rem" }, { y: "0rem", duration: 1, ease: "bounce.out"}, "<");
+
+
+    $(".home-hero_window-01-image").on("mouseenter", function () {
+        bg01EnterTimeline.play();
+    });
+</script>
