@@ -3,18 +3,18 @@
     // Create timeline 01
     let bg01Timeline = gsap.timeline({ paused: true, ease: "power1.out" });
     // Configurate timeline 01
-    bg01Timeline.fromTo(".home-hero_bg-01-wrapper", {opacity: 0, display: "none"}, { opacity: 1, display: "flex", duration: 0 });
+    bg01Timeline.fromTo(".home-hero_bg-01-wrapper", { opacity: 0, display: "none" }, { opacity: 1, display: "flex", duration: 0 });
     bg01Timeline.fromTo(".home-hero_bg-01_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
     bg01Timeline.fromTo(".home-hero_bg-01_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.15");
     bg01Timeline.fromTo(".home-hero_bg-01_element-02", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
-    bg01Timeline.fromTo(".home-hero_bg-01_element-02", { rotationZ: 6 }, { rotationZ: 0, duration: 1, ease: "elastic.out(1, 0.3)"}, "<");
+    bg01Timeline.fromTo(".home-hero_bg-01_element-02", { rotationZ: 6 }, { rotationZ: 0, duration: 1, ease: "elastic.out(1, 0.3)" }, "<");
     bg01Timeline.fromTo(".home-hero_bg-01_element-03", { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
-    bg01Timeline.fromTo(".home-hero_bg-01_element-03", { y: "-4rem" }, { y: "0rem", duration: 1, ease: "bounce.out"}, "<");
+    bg01Timeline.fromTo(".home-hero_bg-01_element-03", { y: "-4rem" }, { y: "0rem", duration: 1, ease: "bounce.out" }, "<");
 
     // Create timeline 02
     let bg02Timeline = gsap.timeline({ paused: true, ease: "power1.out" });
     // Configurate timeline 02
-    bg02Timeline.fromTo(".home-hero_bg-02-wrapper", {opacity: 0, display: "none"}, { opacity: 1, display: "flex", duration: 0 });
+    bg02Timeline.fromTo(".home-hero_bg-02-wrapper", { opacity: 0, display: "none" }, { opacity: 1, display: "flex", duration: 0 });
     bg02Timeline.fromTo(".home-hero_bg-02_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
     bg02Timeline.fromTo(".home-hero_bg-02_element-02", { x: "-100%" }, { x: "0%", duration: 0.5, ease: "expo.out" }, "<+0.15");
     bg02Timeline.fromTo(".home-hero_bg-02_element-03", { x: "100%" }, { x: "0%", duration: 0.5, ease: "expo.out" }, "<");
@@ -25,16 +25,16 @@
     // Create timeline 03
     let bg03Timeline = gsap.timeline({ paused: true, ease: "power1.out" });
     // Configurate timeline 03
-    bg03Timeline.fromTo(".home-hero_bg-03-wrapper", {opacity: 0, display: "none"}, { opacity: 1, display: "flex", duration: 0 });
+    bg03Timeline.fromTo(".home-hero_bg-03-wrapper", { opacity: 0, display: "none" }, { opacity: 1, display: "flex", duration: 0 });
     bg03Timeline.fromTo(".home-hero_bg-03_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
     bg03Timeline.fromTo(".home-hero_bg-03_element-01", { opacity: 0 }, { opacity: 1, duration: 0.5 }, "<+0.15");
-    bg03Timeline.fromTo(".home-hero_bg-03_element-02", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)"}, "<");
+    bg03Timeline.fromTo(".home-hero_bg-03_element-02", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, "<");
     bg03Timeline.fromTo(".home-hero_bg-03_element-03", { opacity: 0, x: "4rem" }, { opacity: 1, x: "0rem", duration: 0.5, ease: "sine.out" }, "<");
 
     // Create timeline 04
     let bg04Timeline = gsap.timeline({ paused: true, ease: "power1.out" });
     // Configurate timeline 04
-    bg04Timeline.fromTo(".home-hero_bg-04-wrapper", {opacity: 0, display: "none"}, { opacity: 1, display: "flex", duration: 0 });
+    bg04Timeline.fromTo(".home-hero_bg-04-wrapper", { opacity: 0, display: "none" }, { opacity: 1, display: "flex", duration: 0 });
     bg04Timeline.fromTo(".home-hero_bg-04_color", { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
     bg04Timeline.fromTo(".home-hero_bg-04_element-01", { y: "-100%" }, { y: "0%", duration: 1, ease: "elastic.out(1, 0.8)" }, "<+0.15");
     bg04Timeline.fromTo("[home-hero_bg-04_element-02-star]", { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.1 }, "<");
@@ -65,7 +65,7 @@
 
     function checkForActiveWindow(windowWrapper, timeline) {
         let timeout = 0;
-        if(currentWindow) {
+        if (currentWindow) {
             gsap.to(currentWindow, { opacity: 0, duration: 0.25 });
             timeout = 0.25;
         }
@@ -86,18 +86,39 @@
 
 <!-- Community Numbers -->
 <script>
-    $(".community-numbers_item").each(function() {
-        let timeline = gsap.timeline({ paused: true,
+    $(".community-numbers_item").each(function () {
+        let timeline = gsap.timeline({
+            paused: true,
             ease: "power2.out",
             scrollTrigger: {
                 trigger: $(this),
                 start: "bottom bottom",
                 end: "+=0",
-                toggleActions:"play none none none"
+                toggleActions: "play none none none"
             }
-    });
+        });
 
         timeline.fromTo($(this).find("[community-number-title]"), { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 1, stagger: 0.125 });
         timeline.fromTo($(this).find(".text-size-large"), { opacity: 0, y: "2rem" }, { opacity: 1, y: "0rem", duration: 0.5 }, "<+0.5");
     });
+</script>
+
+<!-- School of Music -->
+<script>
+    let musicNotessTimeline = gsap.timeline({paused:true});
+    musicNotessTimeline.fromTo(".school-of-music_music-notes", { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    let timeline = gsap.timeline({
+        paused: true,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: $(".school-of-music_window-image"),
+            start: "bottom bottom",
+            end: "center center",
+            scrub: 1,
+            onLeave: () => musicNotessTimeline.play(),
+            onEnterBack: () => musicNotessTimeline.reverse()
+        }
+    });
+
+    timeline.fromTo(".school-of-music_woman-image", { x: "100" }, { x: "0%" });
 </script>
