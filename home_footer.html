@@ -66,8 +66,13 @@
     function checkForActiveWindow(windowWrapper, timeline) {
         let timeout = 0;
         if (currentWindow) {
-            gsap.to(currentWindow, { opacity: 0, duration: 0.25 });
-            timeout = 0.25;
+            if ($(currentWindow).is(windowWrapper)) {
+                return;
+            }
+            else {
+                gsap.to(currentWindow, { opacity: 0, duration: 0.25 });
+                timeout = 0.26;
+            }
         }
 
         setTimeout(() => {
