@@ -1,0 +1,41 @@
+<script>
+    var Webflow = Webflow || [];
+    Webflow.push(function () {
+        let newID = "story-{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}";
+        $(document).find("[teacher-story-{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}]").parent().siblings("[teacher-story-id]").attr("id", newID);
+        // Select the node that will be observed for mutations
+        const targetNode = document.getElementById(newID);
+        let observerTimeout;
+
+				// Options for the observer (which mutations to observe)
+        const config = { attributes: true, childList: true, subtree: true };
+        // Callback function to execute when mutations are observed
+        const callback = (mutationList, observer) => {
+            for (const mutation of mutationList) {
+                if (mutation.type === "childList") {
+                    // console.log("A child node has been added or removed.");
+                    placeFilters();
+                }
+            }
+        };
+        // Create an observer instance linked to the callback function
+        const observer = new MutationObserver(callback);
+        // Start observing the target node for configured mutations
+        observer.observe(targetNode, config);
+
+        function placeFilters() {
+            if(observerTimeout) {
+                clearTimeout(observerTimeout);
+            }
+            let parentTeachingStyle = $(targetNode).parent().find("[teachers-filter-wrapper='teaching-style']");
+            $(targetNode).find("[filter-type='Teaching Style']").appendTo(parentTeachingStyle);
+            let parentGenre = $(targetNode).parent().find("[teachers-filter-wrapper='genre']");
+            $(targetNode).find("[filter-type='Genre']").appendTo(parentGenre);
+            // Create a timeout to stop observing after a period of time
+            observerTimeout = setTimeout(() => {
+                // console.log("stop observing");
+                observer.disconnect();
+            }, 2000);
+        }
+    });
+</script>
