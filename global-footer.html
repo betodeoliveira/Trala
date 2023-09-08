@@ -31,7 +31,7 @@
     });
 
     // [ Genre Marquee ]
-    $(".genre-marquee_component").each(function() {
+    $(".genre-marquee_component").each(function () {
         let marqueeList = $(this).find(".genre-marquee_list");
         let marqueeListWrapper = $(this).find(".genre-marquee_wrapper");
         $(marqueeList).clone().appendTo(marqueeListWrapper);
@@ -41,44 +41,64 @@
         let duration = 30 * (genresAmount / 20);
 
         let genreMarqueeTimeline = gsap.timeline({ repeat: -1 });
-        genreMarqueeTimeline.to(".genre-marquee_list", {x: "-100%", duration: duration, ease: "none"});
+        genreMarqueeTimeline.to(".genre-marquee_list", { x: "-100%", duration: duration, ease: "none" });
 
-        $(marqueeList).on("mouseenter", function() {
+        $(marqueeList).on("mouseenter", function () {
             genreMarqueeTimeline.pause();
         });
 
-        $(marqueeList).on("mouseleave", function() {
+        $(marqueeList).on("mouseleave", function () {
             genreMarqueeTimeline.resume();
         });
     });
 
 
     // [ Featured Stories Interaction ]
-    $(".featured-stories_layout").each(function() {
+    $(".featured-stories_layout").each(function () {
 
         let storiesTimeline = gsap.timeline({ paused: true, ease: "power2.out" });
 
         storiesTimeline.set($(this).find(".featured-stories_lightbox-link"), { display: "flex" });
         storiesTimeline.fromTo($(this).find(".featured-stories_lightbox-link"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, "<");
-        
-        storiesTimeline.to($(this).find(".teachers-filters_type-wrapper"), { y: "3rem", opacity: 0, duration: 0.5, ease: "back.inOut(1.7)", stagger: { from: "end", amount: 0.1 }}, "<");
+
+        storiesTimeline.to($(this).find(".teachers-filters_type-wrapper"), { y: "3rem", opacity: 0, duration: 0.5, ease: "back.inOut(1.7)", stagger: { from: "end", amount: 0.1 } }, "<");
 
         storiesTimeline.set($(this).find(".featured-stories_button-wrapper"), { display: "block" });
         storiesTimeline.fromTo($(this).find(".featured-stories_button-wrapper"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
         storiesTimeline.fromTo($(this).find("[featured-stories-lightbox-button]"), { opacity: 0 }, { opacity: 1, duration: 0.125 }, "<");
 
-        $(this).on("mouseenter", function() {
+        $(this).on("mouseenter", function () {
             storiesTimeline.play();
         });
 
-        $(this).on("mouseleave", function() {
+        $(this).on("mouseleave", function () {
             storiesTimeline.reverse();
         });
     });
 
+    // [ Music Notes ]
+    $("[floating-note]").each(function () {
+        let duration = 6;
+        let yMin = "-0.5rem";
+        let yMax = "0.5rem";
+        let yFrom, yTo;
+        let random = Math.random();
+        if (random <= 0.5) {
+            yFrom = yMin;
+            yTo = yMax;
+        }
+        else {
+            yTo = yMin;
+            yFrom = yMax;
+        }
+
+        gsap.fromTo($(this), { y: yFrom }, { y: yTo, duration: duration, ease: "power1.inOut", yoyo: true, repeat: -1 });
+    });
+
     // [ Slide Up ]
-    $("[slide-up-trigger]").each(function() {
-        let slideUpTimeline = gsap.timeline({paused: true, 
+    $("[slide-up-trigger]").each(function () {
+        let slideUpTimeline = gsap.timeline({
+            paused: true,
             ease: "power4.out",
             scrollTrigger: {
                 trigger: $(this),
@@ -89,12 +109,13 @@
             }
         });
 
-        slideUpTimeline.fromTo($(this).find("[slide-up-target]"), {opacity: 0, y: "6rem"}, {opacity: 1, y: "0rem", duration: 0.5, stagger: 0.125});
+        slideUpTimeline.fromTo($(this).find("[slide-up-target]"), { opacity: 0, y: "6rem" }, { opacity: 1, y: "0rem", duration: 0.5, stagger: 0.125 });
     });
 
-        // [ Slide Left ]
-        $("[slide-left-trigger]").each(function() {
-        let slideLeft = gsap.timeline({paused: true, 
+    // [ Slide Left ]
+    $("[slide-left-trigger]").each(function () {
+        let slideLeft = gsap.timeline({
+            paused: true,
             ease: "power4.out",
             scrollTrigger: {
                 trigger: $(this),
@@ -105,6 +126,23 @@
             }
         });
 
-        slideLeft.fromTo($(this).find("[slide-left-target]"), {opacity: 0, x: "4rem"}, {opacity: 1, x: "0rem", duration: 0.5, stagger: 0.125});
+        slideLeft.fromTo($(this).find("[slide-left-target]"), { opacity: 0, x: "4rem" }, { opacity: 1, x: "0rem", duration: 0.5, stagger: 0.125 });
+    });
+
+    // [ Fade In ]
+    $("[fade-in-trigger]").each(function () {
+        let slideLeft = gsap.timeline({
+            paused: true,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: $(this),
+                start: "center bottom",
+                end: "+=0",
+                // markers: true,
+                toggleActions: "play none none none"
+            }
+        });
+
+        slideLeft.fromTo($(this).find("[fade-in-target]"), { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.125 });
     });
 </script>
