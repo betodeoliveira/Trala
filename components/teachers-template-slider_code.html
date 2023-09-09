@@ -12,7 +12,7 @@
     var Webflow = Webflow || [];
     Webflow.push(function () {
         // Select the node that will be observed for mutations
-        const targetNode = document.getElementById("#jFilters-{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}");
+        const targetNode = document.getElementById("jfilters-{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}");
         let observerTimeout;
 
         // Options for the observer (which mutations to observe)
@@ -35,9 +35,9 @@
             if (observerTimeout) {
                 clearTimeout(observerTimeout);
             }
-            let parentTeachingStyle = $(targetNode).parent().find("[teachers-filter-wrapper='teaching-style']");
+            let parentTeachingStyle = $(targetNode).parent().siblings().find("[teachers-filter-wrapper='teaching-style']");
             $(targetNode).find("[filter-type='Teaching Style']").appendTo(parentTeachingStyle);
-            let parentGenre = $(tailtergetNode).parent().find("[teachers-filter-wrapper='genre']");
+            let parentGenre = $(targetNode).parent().siblings().find("[teachers-filter-wrapper='genre']");
             $(targetNode).find("[filter-type='Genre']").appendTo(parentGenre);
             // Create a timeout to stop observing after a period of time
             observerTimeout = setTimeout(() => {
