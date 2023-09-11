@@ -1,0 +1,15 @@
+<!-- Lesson Highlights -->
+<script>
+    let tralaMethodTimeline = gsap.timeline({
+        paused: true,
+        scrollTrigger: {
+            trigger: $(".trala-method_steps-list"),
+            start: "bottom bottom",
+            end: "+=0",
+            toggleActions: "play none none none"
+        }
+    });
+
+    tralaMethodTimeline.fromTo($("#mask-path_trala-method_steps-dashed-line"), { drawSVG: "0% 0%" }, { drawSVG: "0% 100%", duration: 1 });
+    tralaMethodTimeline.fromTo(".trala-method_steps-item", { y: "4rem", opacity: 0 }, { y: "0rem", opacity: 1, duration: 1, stagger: 0.125, ease: "elastic.out(1, 0.8)" }, "<0.25");
+</script>
