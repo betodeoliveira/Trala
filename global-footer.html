@@ -100,7 +100,7 @@
             // Start observing the target node for configured mutations
             observer.observe(targetNode, config);
 
-            if(forcePlacement) {
+            if (forcePlacement) {
                 placeFilters();
             }
 
@@ -125,22 +125,24 @@
     teachersListPlaceFilters(false);
 
     // [ Music Notes ]
-    $("[floating-note]").each(function () {
-        let duration = 6;
-        let yMin = "-0.5rem";
-        let yMax = "0.5rem";
-        let yFrom, yTo;
-        let random = Math.random();
-        if (random <= 0.5) {
-            yFrom = yMin;
-            yTo = yMax;
-        }
-        else {
-            yTo = yMin;
-            yFrom = yMax;
-        }
+    $("[floating-notes]").each(function () {
+        $(this).find("path").each(function () {
+            let duration = 6;
+            let yMin = "-0.5rem";
+            let yMax = "0.5rem";
+            let yFrom, yTo;
+            let random = Math.random();
+            if (random <= 0.5) {
+                yFrom = yMin;
+                yTo = yMax;
+            }
+            else {
+                yTo = yMin;
+                yFrom = yMax;
+            }
 
-        gsap.fromTo($(this), { y: yFrom }, { y: yTo, duration: duration, ease: "power1.inOut", yoyo: true, repeat: -1 });
+            gsap.fromTo($(this), { y: yFrom }, { y: yTo, duration: duration, ease: "power1.inOut", yoyo: true, repeat: -1 });
+        });
     });
 
     // [ Slide Up ]
@@ -191,6 +193,6 @@
             }
         });
 
-        slideLeft.fromTo($(this).find("[fade-in-target]"), { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.125 });
+        slideLeft.fromTo($(this).find("[fade-in-target]"), { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.125 });
     });
 </script>
