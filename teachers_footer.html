@@ -30,3 +30,22 @@
         },
     ]);
 </script>
+
+<!-- Show and hide filters on mobile -->
+<script>
+    let mobileFiltersTimeline = gsap.timeline({ paused: true, ease: "power2.out" });
+
+    mobileFiltersTimeline.to($(".filter-fullscreen_component"), { display: "flex", duration: 0 });
+    mobileFiltersTimeline.to($(".filter-fullscreen_disable-scroll"), { display: "block", duration: 0 });
+    mobileFiltersTimeline.fromTo($(".filter-fullscreen_component"), { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    mobileFiltersTimeline.fromTo($(".filter-fullscreen_layout"), { y: "100%" }, { y: "0%", duration: 0.3, ease: "power2.inOut" }, "<");
+    mobileFiltersTimeline.to($(".filter_trigger-mobile"), { opacity: 0, duration: 0.3 }, "<");
+
+    $("[mobile-filters-show]").on("click", function () {
+        mobileFiltersTimeline.play();
+    });
+
+    $("[mobile-filters-hide]").on("click", function () {
+        mobileFiltersTimeline.reverse();
+    });
+</script>
