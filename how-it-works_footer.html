@@ -1,14 +1,35 @@
 <script>
-    let howItWorksTimeline = gsap.timeline({
-        paused: true,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: $(".how-it-works_component"),
-            start: "top center",
-            end: "bottom+=1000 bottom",
-            scrub: 4
-        }
+    let howItWorksdMatchMedia = gsap.matchMedia();
+
+    howItWorksdMatchMedia.add("(min-width: 992px)", () => {
+        let howItWorksTimeline = gsap.timeline({
+            paused: true,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: $(".how-it-works_component"),
+                start: "top center",
+                end: "bottom+=1000 bottom",
+                scrub: 4
+            }
+        });
+
+        howItWorksTimeline.fromTo($("[how-it-works-path]"), { drawSVG: "0% 0%" }, { drawSVG: "0% 100%" });
     });
 
-    howItWorksTimeline.fromTo($("#mask-path_how-it-works-dashed-line"), { drawSVG: "0% 0%" }, { drawSVG: "0% 100%" });
+    howItWorksdMatchMedia.add("(max-width: 991px)", () => {
+        let howItWorksTimeline = gsap.timeline({
+            paused: true,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: $(".how-it-works_component"),
+                start: "top center",
+                end: "bottom bottom",
+                scrub: 4
+            }
+        });
+
+        howItWorksTimeline.fromTo($("[how-it-works-path]"), { drawSVG: "0% 0%" }, { drawSVG: "0% 100%" });
+    });
+
+
 </script>
