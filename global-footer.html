@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <!-- Draw SVG -->
 <script type="text/javascript"
-    src="https://uploads-ssl.webflow.com/64e4cedc6459e92500370b54/64f6409f54e53ad53109eeaa_DrawSVGPlugin.min.txt"></script>
+    src="https://uploads-ssl.webflow.com/650377878a8834c8b51a24fe/650378ecb89c34b5a796d92c_DrawSVGPlugin.min.txt"></script>
 
 <script>
     gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -50,7 +50,17 @@
         $(marqueeList).on("mouseleave", function () {
             genreMarqueeTimeline.resume();
         });
+
+        // Set the on click fuction
+        $(".genre-marquee_layout").each(function () {
+            let param = $(this).attr("uri-param");
+            $(this).on("click", function() {
+                window.location = "/teachers?genre=" + encodeURIComponent(param) + "#all-teachers";
+            });
+        });
     });
+
+
 
 
     // [ Featured Stories Interaction ]
