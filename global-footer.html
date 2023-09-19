@@ -54,14 +54,11 @@
         // Set the on click fuction
         $(".genre-marquee_layout").each(function () {
             let param = $(this).attr("uri-param");
-            $(this).on("click", function() {
+            $(this).on("click", function () {
                 window.location = "/teachers?genre=" + encodeURIComponent(param) + "#all-teachers";
             });
         });
     });
-
-
-
 
     // [ Featured Stories Interaction ]
     $(".featured-stories_layout").each(function () {
@@ -206,6 +203,8 @@
         slideLeft.fromTo($(this).find("[fade-in-target]"), { opacity: 0 }, { opacity: 1, duration: 1, stagger: 0.125 });
     });
 
-        // [ Footer Copyright ]
-        $('.footer_copyright-year').text(new Date().getFullYear());
+    // [ Footer Copyright ]
+    $('.footer_copyright-year').text(new Date().getFullYear());
+    // [ Hide section if collection is empty ]
+    $('.w-dyn-empty').parents('[hide-if-collection-empty]').each(function () { $(this).hide() })
 </script>
