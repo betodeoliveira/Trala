@@ -212,3 +212,85 @@
     // [ Hide section if collection is empty ]
     $('.w-dyn-empty').parents('[hide-if-collection-empty]').each(function () { $(this).hide() })
 </script>
+
+<script>
+        // Code block 1
+        (function () {
+            // Get the form and email input field
+            var form = document.getElementById("myForm");
+            var emailInput = document.getElementById("email");
+
+            // Add an event listener for form submission validation
+            form.addEventListener("submit", function (event) {
+                var email = emailInput.value;
+
+                // Regular expression to validate email format
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                // Valid email endings
+                var validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".com", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us"];
+
+                if (!emailPattern.test(email) || !isValidEmailEnding(email, validEndings)) {
+                    event.preventDefault();
+                    showErrorMessage("Invalid email address. Please check your email.");
+                }
+            });
+
+            // Function to check if email ending is valid
+            function isValidEmailEnding(email, validEndings) {
+                var emailEnding = email.substring(email.lastIndexOf(".") + 1);
+                return validEndings.includes("." + emailEnding);
+            }
+
+            // Function to show an error message
+            function showErrorMessage(message) {
+                var errorContainer = document.getElementById("errorContainer");
+                if (!errorContainer) {
+                    errorContainer = document.createElement("div");
+                    errorContainer.setAttribute("id", "errorContainer");
+                    form.appendChild(errorContainer);
+                }
+                errorContainer.innerText = message;
+            }
+        })();
+
+    // Code block 2
+    (function () {
+        // Get the form and email input field
+        var form2 = document.getElementById("myForm2");
+        var emailInput2 = document.getElementById("email2");
+
+        // Add an event listener for form submission validation
+        form2.addEventListener("submit", function (event) {
+            var email = emailInput2.value;
+
+            // Regular expression to validate email format
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Valid email endings
+            var validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".com", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us"];
+
+            if (!emailPattern.test(email) || !isValidEmailEnding(email, validEndings)) {
+                event.preventDefault();
+                showErrorMessage("Invalid email address. Please check your email.");
+            }
+        });
+
+        // Function to check if email ending is valid
+        function isValidEmailEnding(email, validEndings) {
+            var emailEnding = email.substring(email.lastIndexOf(".") + 1);
+            return validEndings.includes("." + emailEnding);
+        }
+
+        // Function to show an error message
+        function showErrorMessage(message) {
+            var errorContainer = document.getElementById("errorContainer2");
+            if (!errorContainer) {
+                errorContainer = document.createElement("div");
+                errorContainer.setAttribute("id", "errorContainer2");
+                form2.appendChild(errorContainer);
+            }
+            errorContainer.innerText = message;
+        }
+    })();
+</script>
