@@ -32,6 +32,7 @@
 
     // [ Genre Marquee ]
     $(".genre-marquee_component").each(function () {
+        let genreMarqueeMatchMedia = gsap.matchMedia();
         let marqueeList = $(this).find(".genre-marquee_list");
         let marqueeListWrapper = $(this).find(".genre-marquee_wrapper");
         $(marqueeList).clone().appendTo(marqueeListWrapper);
@@ -43,12 +44,15 @@
         let genreMarqueeTimeline = gsap.timeline({ repeat: -1 });
         genreMarqueeTimeline.to(".genre-marquee_list", { x: "-100%", duration: duration, ease: "none" });
 
-        $(marqueeList).on("mouseenter", function () {
-            genreMarqueeTimeline.pause();
-        });
+        // Dont do the pause on mobile
+        genreMarqueeMatchMedia.add("(min-width: 768px)", () => {
+            $(marqueeList).on("mouseenter", function () {
+                genreMarqueeTimeline.pause();
+            });
 
-        $(marqueeList).on("mouseleave", function () {
-            genreMarqueeTimeline.resume();
+            $(marqueeList).on("mouseleave", function () {
+                genreMarqueeTimeline.resume();
+            });
         });
 
         // Set the on click fuction
