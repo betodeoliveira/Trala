@@ -52,7 +52,7 @@
         });
 
         // Set the on click fuction
-        $(".genre-marquee_layout").each(function () {
+        $("[genre-marquee-link]").each(function () {
             let param = $(this).attr("uri-param");
             $(this).on("click", function () {
                 window.location = "/teachers?genre=" + encodeURIComponent(param) + "#all-teachers";
