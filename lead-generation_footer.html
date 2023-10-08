@@ -1,0 +1,88 @@
+<script>
+    // Variables
+    let currentQuestion = 0;
+    let totalQuestions = $(".lead-gen_question").length;
+    let navigationBlocked = true;
+
+    // Configurate sections
+    $(".section_lead-gen-intro").css("display", "flex");
+    $(".section_lead-gen-form").css("display", "none");
+    $(".section_lead-gen-form").css("opacity", "0");
+    $(".section_lead-gen-nav").css("display", "none");
+    $(".section_lead-gen-nav").css("opacity", "0");
+    // Other configurations
+    $(".lead-gen_radio-button").removeClass("is-active");
+    $(".lead-gen_prev-button_wrapper").css("opacity", "0");
+
+    // Intro
+    $("[lead-gen-start-form]").on("click", function () {
+        // Transit sections
+        gsap.to(".section_lead-gen-intro", {
+            opacity: 0, duration: 0.25,
+            onComplete() {
+                $(".section_lead-gen-intro").css("display", "none");
+                $(".section_lead-gen-form").css("display", "block");
+                $(".section_lead-gen-nav").css("display", "block");
+                gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
+                gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
+            }
+        });
+
+        // Hide music notes
+        gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
+    });
+
+    // Add or remove is active from radio buttons
+    $(".lead-gen_radio-button").on("click", function () {
+        if (!$(this).hasClass("is-active")) {
+            // Remove from every button
+            $(".lead-gen_radio-button").removeClass("is-active");
+            $(this).addClass("is-active");
+        }
+    });
+
+    // Form navigation next
+    $("[lead-gen-next]").on("click", function () {
+        nextFormSlide();
+    });
+
+    $(document).keypress(function (event) {
+        if (event.which == '13') { // enter pressed
+            event.preventDefault();  // stops its action
+            nextFormSlide();
+        }
+    });
+
+    // Form navigation previous
+    $("[lead-gen-prev]").on("click", function () {
+        prevFormSlide();
+    });
+
+    $(document).keydown(function (event) {
+        if (event.which == '37') { // left key pressed
+            event.preventDefault();  // stops its action
+            prevFormSlide();
+        }
+    });
+
+    function nextFormSlide() {
+        if(currentQuestion >= totalQuestions || navigationBlocked) {
+            return;
+        }
+        else {
+            $(".lead-gen_form-next").click();
+            currentQuestion++;
+        }
+    }
+
+    function prevFormSlide() {
+        if(currentQuestion <= 0 || navigationBlocked) {
+            return;
+        }
+        else {
+            $(".lead-gen_form-prev").click();
+            currentQuestion--;
+        }
+    }
+
+</script>
