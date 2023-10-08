@@ -2,7 +2,6 @@
     // Variables
     let currentQuestion = 0;
     let totalQuestions = $(".lead-gen_question").length;
-    let nextSlideBlocked = false;
 
     // Configurate sections
     $(".section_lead-gen-intro").css("display", "flex");
@@ -25,20 +24,12 @@
                 $(".section_lead-gen-nav").css("display", "block");
                 gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
                 gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
+                checkForAnswer();
             }
         });
 
         // Hide music notes
         gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
-    });
-
-    // Add or remove is active from radio buttons
-    $(".lead-gen_radio-button").on("click", function () {
-        if (!$(this).hasClass("is-active")) {
-            // Remove from every button
-            $(".lead-gen_radio-button").removeClass("is-active");
-            $(this).addClass("is-active");
-        }
     });
 
     // Form navigation next
@@ -73,12 +64,13 @@
     });
 
     function nextFormSlide() {
-        if (currentQuestion >= totalQuestions || nextSlideBlocked) {
+        if (currentQuestion >= totalQuestions || $("[lead-gen-next]").hasClass("is-disabled")) {
             return;
         }
         else {
             $(".lead-gen_form-next").click();
             currentQuestion++;
+            checkForAnswer();
         }
     }
 
@@ -89,7 +81,55 @@
         else {
             $(".lead-gen_form-prev").click();
             currentQuestion--;
+            checkForAnswer();
         }
     }
 
+    // Add or remove is active from radio buttons
+    $(".lead-gen_radio-button").on("click", function () {
+        if (!$(this).hasClass("is-active")) {
+            // Remove from every button
+            $(".lead-gen_radio-button").removeClass("is-active");
+            $(this).addClass("is-active");
+            checkForAnswer();
+        }
+    });
+
+    //
+    $(".form_input").change(function() {
+        checkForAnswer();
+    });
+
+    function checkForAnswer() {
+
+        let questionType = $(".lead-gen_question").eq(currentQuestion).attr("lead-gen-question-type");
+
+        if (questionType == "radio") {
+            if ($(".lead-gen_question").eq(currentQuestion).find(".lead-gen_radio-button.is-active").length <= 0) {
+                checkNextButton(false);
+            }
+            else {
+                checkNextButton(true);
+            }
+        }
+        else if (questionType == "input") {
+            if ($(".lead-gen_question").eq(currentQuestion).find(".form_input").val().length <= 0) {
+                checkNextButton(false);
+            }
+            else {
+                checkNextButton(true);
+            }
+        }
+    }
+
+    function checkNextButton(active) {
+        if (!active) {
+            if (!$("[lead-gen-next]").hasClass("is-disabled")) {
+                $("[lead-gen-next]").addClass("is-disabled");
+            }
+        }
+        else {
+            $("[lead-gen-next]").removeClass("is-disabled");
+        }
+    }
 </script>
