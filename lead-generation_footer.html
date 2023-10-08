@@ -2,7 +2,7 @@
     // Variables
     let currentQuestion = 0;
     let totalQuestions = $(".lead-gen_question").length;
-    let navigationBlocked = true;
+    let nextSlideBlocked = false;
 
     // Configurate sections
     $(".section_lead-gen-intro").css("display", "flex");
@@ -53,6 +53,13 @@
         }
     });
 
+    $(document).keydown(function (objEvent) {
+        if (objEvent.keyCode == 9) {  //tab pressed
+            objEvent.preventDefault(); // stops its action
+            nextFormSlide();
+        }
+    })
+
     // Form navigation previous
     $("[lead-gen-prev]").on("click", function () {
         prevFormSlide();
@@ -66,7 +73,7 @@
     });
 
     function nextFormSlide() {
-        if(currentQuestion >= totalQuestions || navigationBlocked) {
+        if (currentQuestion >= totalQuestions || nextSlideBlocked) {
             return;
         }
         else {
@@ -76,7 +83,7 @@
     }
 
     function prevFormSlide() {
-        if(currentQuestion <= 0 || navigationBlocked) {
+        if (currentQuestion <= 0) {
             return;
         }
         else {
