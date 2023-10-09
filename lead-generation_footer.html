@@ -136,13 +136,13 @@
         if (currentQuestion >= totalQuestions && !$("[lead-gen-next]").hasClass("is-disabled")) {
             submitForm();
         }
-        else if(currentQuestion >= totalQuestions || $("[lead-gen-next]").hasClass("is-disabled")) {
+        else if (currentQuestion >= totalQuestions || $("[lead-gen-next]").hasClass("is-disabled")) {
             return;
         }
         else {
             $(".lead-gen_form-next").click();
             currentQuestion++;
-            if(currentQuestion >= 3) {
+            if (currentQuestion >= 3) {
                 $("[lead-gen-next-text]").text("Finish");
             }
             checkForAnswer();
@@ -156,7 +156,7 @@
         else {
             $(".lead-gen_form-prev").click();
             currentQuestion--;
-            if(currentQuestion < 3) {
+            if (currentQuestion < 3) {
                 $("[lead-gen-next-text]").text("Continue");
             }
             checkForAnswer();
@@ -199,7 +199,7 @@
             }
         }
         else if (questionType == "phone") {
-            if($(".lead-gen_question").eq(currentQuestion).find(".form_input").hasClass("error")) {
+            if ($(".lead-gen_question").eq(currentQuestion).find(".form_input").hasClass("error")) {
                 checkNextButton(false);
             }
             else if ($(".lead-gen_question").eq(currentQuestion).find(".form_input").val().length <= 0) {
@@ -235,4 +235,20 @@
             }
         });
     }
+</script>
+
+<!-- Hubspot form -->
+<script>
+    // Display Thak You content when form is submitted
+    window.addEventListener('message', function (event) {
+
+        if (event.data.type !== 'hsFormCallback') return;
+
+        if (event.data.eventName === 'onFormSubmit') {
+            setTimeout(() => {
+                window.location("/staging/thank-you");
+            }, 1000);
+        }
+
+    });
 </script>
