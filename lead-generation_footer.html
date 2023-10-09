@@ -82,6 +82,30 @@
     $(".lead-gen_radio-button").removeClass("is-active");
     $(".lead-gen_prev-button_wrapper").css("opacity", "0");
 
+    // Get URL parameters
+    function getURLParameters() {
+        var queryString = window.location.search.slice(1); // Get the query string without the leading '?'
+        var params = {};
+
+        if (queryString) {
+            var paramArray = queryString.split('&');
+            for (var i = 0; i < paramArray.length; i++) {
+                var param = paramArray[i].split('=');
+                params[param[0]] = decodeURIComponent(param[1]);
+            }
+        }
+
+        return params;
+    }
+
+    // Place parameters inside the form
+    let parameters = getURLParameters();
+
+    if(parameters["Email"]) {
+        $("#your-email").val(parameters["Email"]);
+    }
+
+
     // Intro
     $("[lead-gen-start-form]").on("click", function () {
         // Transit sections
