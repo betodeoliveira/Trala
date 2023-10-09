@@ -105,7 +105,6 @@
         $("#your-email").val(parameters["Email"]);
     }
 
-
     // Intro
     $("[lead-gen-start-form]").on("click", function () {
         // Transit sections
@@ -166,6 +165,9 @@
         else {
             $(".lead-gen_form-next").click();
             currentQuestion++;
+            if(currentQuestion > 0) {
+                gsap.to(".lead-gen_prev-button_wrapper", {opacity: 1, duration: 0.25});
+            }
             if (currentQuestion >= 3) {
                 $("[lead-gen-next-text]").text("Finish");
             }
@@ -180,6 +182,9 @@
         else {
             $(".lead-gen_form-prev").click();
             currentQuestion--;
+            if(currentQuestion <= 0) {
+                gsap.to(".lead-gen_prev-button_wrapper", {opacity: 0, duration: 0.25});
+            }
             if (currentQuestion < 3) {
                 $("[lead-gen-next-text]").text("Continue");
             }
