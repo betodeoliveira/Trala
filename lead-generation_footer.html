@@ -168,7 +168,7 @@
             if(currentQuestion > 0) {
                 gsap.to(".lead-gen_prev-button_wrapper", {opacity: 1, duration: 0.25});
             }
-            if (currentQuestion >= 3) {
+            if (currentQuestion >= totalQuestions) {
                 $("[lead-gen-next-text]").text("Finish");
             }
             checkForAnswer();
@@ -185,7 +185,7 @@
             if(currentQuestion <= 0) {
                 gsap.to(".lead-gen_prev-button_wrapper", {opacity: 0, duration: 0.25});
             }
-            if (currentQuestion < 3) {
+            if (currentQuestion < totalQuestions) {
                 $("[lead-gen-next-text]").text("Continue");
             }
             checkForAnswer();
@@ -195,8 +195,8 @@
     // Add or remove is active from radio buttons
     $(".lead-gen_radio-button").on("click", function () {
         if (!$(this).hasClass("is-active")) {
-            // Remove from every button
-            $(".lead-gen_radio-button").removeClass("is-active");
+            // Reset all siblings
+            $(this).siblings(".lead-gen_radio-button").removeClass("is-active");
             $(this).addClass("is-active");
             checkForAnswer();
         }
