@@ -1,8 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"></script>
-
-<script>
-    let input = document.querySelector("#phone-number"),
+let input = document.querySelector("#phone-number"),
         dialCode = document.querySelector(".dial-code"),
         errorMsg = document.querySelector("#lead-gen-invalid-number"),
         validMsg = document.querySelector("#lead-gen-valid-number");
@@ -60,9 +56,7 @@
 
     input.addEventListener("change", reset);
     input.addEventListener("keyup", reset);
-</script>
 
-<script>
 
     let currentQuestion = 0;
     let totalQuestions = $(".lead-gen_question").length - 1;
@@ -289,9 +283,7 @@
             window.location.href = "/staging/thank-you";
         }
     }
-</script>
 
-<script>
     window.addEventListener('message', function (event) {
 
         if (event.data.type !== 'hsFormCallback') return;
@@ -302,4 +294,3 @@
             }, 1000);
         }
     });
-</script>
