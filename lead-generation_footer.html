@@ -101,7 +101,7 @@
     // Place parameters inside the form
     let parameters = getURLParameters();
 
-    if(parameters["Email"]) {
+    if (parameters["Email"]) {
         $("#your-email").val(parameters["Email"]);
     }
 
@@ -165,8 +165,8 @@
         else {
             $(".lead-gen_form-next").click();
             currentQuestion++;
-            if(currentQuestion > 0) {
-                gsap.to(".lead-gen_prev-button_wrapper", {opacity: 1, duration: 0.25});
+            if (currentQuestion > 0) {
+                gsap.to(".lead-gen_prev-button_wrapper", { opacity: 1, duration: 0.25 });
             }
             if (currentQuestion >= totalQuestions) {
                 $("[lead-gen-next-text]").text("Finish");
@@ -182,8 +182,8 @@
         else {
             $(".lead-gen_form-prev").click();
             currentQuestion--;
-            if(currentQuestion <= 0) {
-                gsap.to(".lead-gen_prev-button_wrapper", {opacity: 0, duration: 0.25});
+            if (currentQuestion <= 0) {
+                gsap.to(".lead-gen_prev-button_wrapper", { opacity: 0, duration: 0.25 });
             }
             if (currentQuestion < totalQuestions) {
                 $("[lead-gen-next-text]").text("Continue");
@@ -253,16 +253,21 @@
 
     function submitForm() {
         $("#lead-gen-form").submit();
-        gsap.to(".section_lead-gen-nav", { opacity: 0, duration: 0.25 });
-        gsap.to(".section_lead-gen-form", {
-            opacity: 0, duration: 0.25,
-            onComplete() {
-                $(".section_lead-gen-nav").css("display", "none");
-                $(".section_lead-gen-form").css("display", "none");
-                $(".section_lead-gen-hubspot").css("display", "block");
-                gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
-            }
-        });
+        if ($("#Schedule-a-time-for-call").parent().hasClass("is-active")) {
+            gsap.to(".section_lead-gen-nav", { opacity: 0, duration: 0.25 });
+            gsap.to(".section_lead-gen-form", {
+                opacity: 0, duration: 0.25,
+                onComplete() {
+                    $(".section_lead-gen-nav").css("display", "none");
+                    $(".section_lead-gen-form").css("display", "none");
+                    $(".section_lead-gen-hubspot").css("display", "block");
+                    gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
+                }
+            });
+        }
+        else {
+            window.location.href = "/staging/thank-you";
+        }
     }
 </script>
 
@@ -275,7 +280,7 @@
 
         if (event.data.eventName === 'onFormSubmit') {
             setTimeout(() => {
-                window.location("/staging/thank-you");
+                window.location.href = "/staging/thank-you";
             }, 1000);
         }
 
