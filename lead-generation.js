@@ -330,6 +330,9 @@ function checkNextButton(active) {
 }
 
 function submitForm() {
+    // First submit the hubspot form
+    $("#hubspot-form").find("[type=submit]").click();
+    // Then submit the one from webflow
     $("#lead-gen-form").submit();
     if ($("#Schedule-a-time-for-call").parent().hasClass("is-active")) {
         gsap.to(".section_lead-gen-nav", { opacity: 0, duration: 0.25 });
@@ -352,6 +355,7 @@ window.addEventListener('message', function (event) {
 
     if (event.data.type !== 'hsFormCallback') return;
 
+    console.log(event.data.eventName);
     if (event.data.eventName === 'onFormSubmit') {
         setTimeout(() => {
             window.location.href = "/staging/thank-you";
