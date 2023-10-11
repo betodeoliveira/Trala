@@ -148,11 +148,11 @@ let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".co", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us", ".br"];
 
 $("#your-email").on("change", function() {
-    $(".lead-gen_email-invalid").removeClass("hide");
+    $(".lead-gen_email-invalid").addClass("hide");
 });
 
 $("#your-email").on("keyup", function() {
-    $(".lead-gen_email-invalid").removeClass("hide");
+    $(".lead-gen_email-invalid").addClass("hide");
 });
 
 function isValidEmailEnding(email, validEndings) {
