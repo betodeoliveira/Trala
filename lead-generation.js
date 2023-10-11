@@ -1,3 +1,11 @@
+// [KEEP FORM HEIGHT]
+$(window).bind("load resize submit",function(e){
+    $('form').each(function() {
+      var formHeight = $(this).height();
+      $(this).siblings('.w-form-done').css({'min-height': formHeight});
+    });
+  });
+  
 // [ VARIABLES ]
 let currentQuestion = 0;
 let totalQuestions = $(".lead-gen_question").length - 1;
