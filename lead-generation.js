@@ -163,14 +163,14 @@ function resetEmail () {
 
 emailInput.addEventListener("blur", function () {
     resetEmail();
-    if(!isValidEmailEnding()) {
+    if(!isValidEmailEnding($("#your-email").val(), validEndings)) {
         emailInput.classList.add("error");
         $(".lead-gen_email-invalid").removeClass("hide");
         checkAnswer();
     }
 });
 
-function isValidEmailEnding(email) {
+function isValidEmailEnding(email, validEndings) {
     var emailEnding = email.substring(email.lastIndexOf(".") + 1);
     return validEndings.includes("." + emailEnding);
 }
