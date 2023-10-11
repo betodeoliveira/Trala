@@ -144,24 +144,39 @@ function prevSlide() {
 // [ CHECKERS ]
 
 // Email Checker
+let emailInput = document.querySelector("#your-email");
 let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".co", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us", ".br"];
 
 $("#your-email").on("change", function() {
-    $(".lead-gen_email-invalid").addClass("hide");
+    resetEmail();
 });
 
 $("#your-email").on("keyup", function() {
-    $(".lead-gen_email-invalid").addClass("hide");
+    resetEmail();
 });
 
-function isValidEmailEnding(email, validEndings) {
+function resetEmail () {
+    $(".lead-gen_email-invalid").addClass("hide");
+    emailInput.classList.remove("error");
+};
+
+emailInput.addEventListener("blur", function () {
+    resetEmail();
+    if(!isValidEmailEnding()) {
+        emailInput.classList.add("error");
+        $(".lead-gen_email-invalid").removeClass("hide");
+        checkAnswer();
+    }
+});
+
+function isValidEmailEnding(email) {
     var emailEnding = email.substring(email.lastIndexOf(".") + 1);
     return validEndings.includes("." + emailEnding);
 }
 
 // Phone Checker
-let input = document.querySelector("#your-phone"),
+let phoneInput = document.querySelector("#your-phone"),
     dialCode = document.querySelector(".dial-code"),
     errorMsg = document.querySelector(".lead-gen_phone-invalid"),
     validMsg = document.querySelector(".lead-gen_phone-valid");
@@ -193,7 +208,7 @@ let errorMap = [
     "Invalid length",
 ];
 
-let reset = function () {
+let resetPhone = function () {
     input.classList.remove("error");
     errorMsg.innerHTML = "";
     errorMsg.classList.add("hide");
@@ -201,7 +216,7 @@ let reset = function () {
 };
 
 input.addEventListener("blur", function () {
-    reset();
+    resetPhone();
     if (input.value.trim()) {
         if (iti.isValidNumber()) {
             dialCode.value =
@@ -217,8 +232,8 @@ input.addEventListener("blur", function () {
     }
 });
 
-input.addEventListener("change", reset);
-input.addEventListener("keyup", reset);
+input.addEventListener("change", resetPhone);
+input.addEventListener("keyup", resetPhone);
 
 // Answer Checker
 function checkAnswer() {
@@ -226,16 +241,12 @@ function checkAnswer() {
     let questionType = $(".lead-gen_question").eq(currentQuestion).attr("lead-gen-question");
     // Check based on the type
     if (questionType == "email") {
-        let email = $("#your-email").val();
-
-        if (!emailPattern.test(email) || !isValidEmailEnding(email, validEndings)) {
-            $(".lead-gen_email-invalid").removeClass("hide");
+        if ($("#your-email").hasClass("error")) {
             $("[name=email]").val("");
             checkNextButton(false);
         }
         else {
-            $(".lead-gen_email-invalid").addClass("hide");
-            $("[name=email]").val(email);
+            $("[name=email]").val($("#your-email").val());
             checkNextButton(true);
         }
     }
@@ -274,9 +285,7 @@ function checkAnswer() {
         }
     }
     else if (questionType == "phone") {
-        let phone = $("#your-phone").val();
-
-        if ($("#your-phone").val().length <= 0) {
+        if ($("#your-phone").hasClass("error")) {
             $("[name=phone]").val("");
             checkNextButton(false);
         }
