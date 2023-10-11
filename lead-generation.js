@@ -21,7 +21,7 @@ $(document).keypress(function (event) {
         // Wait until the chekcers are running
         setTimeout(() => {
             nextSlide();
-        }, 250);
+        }, 500);
     }
 });
 // Tab
@@ -31,7 +31,7 @@ $(document).keydown(function (objEvent) {
         // Wait until the chekcers are running
         setTimeout(() => {
             nextSlide();
-        }, 250);
+        }, 500);
     }
 });
 // Left Arrow
@@ -251,6 +251,9 @@ function checkAnswer() {
             $("[name=email]").val("");
             checkNextButton(false);
         }
+        else if ($("#your-email").val().length <= 0) {
+            checkNextButton(false);
+        }
         else {
             $("[name=email]").val($("#your-email").val());
             checkNextButton(true);
@@ -293,6 +296,9 @@ function checkAnswer() {
     else if (questionType == "phone") {
         if ($("#your-phone").hasClass("error")) {
             $("[name=phone]").val("");
+            checkNextButton(false);
+        }
+        else if ($("#your-phone").val().length <= 0) {
             checkNextButton(false);
         }
         else {
