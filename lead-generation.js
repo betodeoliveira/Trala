@@ -163,8 +163,8 @@ function isValidEmailEnding(email, validEndings) {
 // Phone Checker
 let input = document.querySelector("#your-phone"),
     dialCode = document.querySelector(".dial-code"),
-    errorMsg = document.querySelector("#lead-gen-invalid-number"),
-    validMsg = document.querySelector("#lead-gen-valid-number");
+    errorMsg = document.querySelector(".lead-gen_phone-invalid"),
+    validMsg = document.querySelector(".lead-gen_phone-valid");
 
 let iti = intlTelInput(input, {
     initialCountry: "auto",
