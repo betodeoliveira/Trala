@@ -18,14 +18,20 @@ $(".lead-gen_prev-button_wrapper").css("opacity", "0");
 $(document).keypress(function (event) {
     if (event.which == '13') {
         event.preventDefault();
-        nextSlide();
+        // Wait until the chekcers are running
+        setTimeout(() => {
+            nextSlide();
+        }, 250);
     }
 });
 // Tab
 $(document).keydown(function (objEvent) {
-    if (objEvent.keyCode == 9) { 
+    if (objEvent.keyCode == 9) {
         objEvent.preventDefault();
-        nextSlide();
+        // Wait until the chekcers are running
+        setTimeout(() => {
+            nextSlide();
+        }, 250);
     }
 });
 // Left Arrow
@@ -148,22 +154,22 @@ let emailInput = document.querySelector("#your-email");
 let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".co", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us", ".br"];
 
-$("#your-email").on("change", function() {
+$("#your-email").on("change", function () {
     resetEmail();
 });
 
-$("#your-email").on("keyup", function() {
+$("#your-email").on("keyup", function () {
     resetEmail();
 });
 
-function resetEmail () {
+function resetEmail() {
     $(".lead-gen_email-invalid").addClass("hide");
     emailInput.classList.remove("error");
 };
 
 emailInput.addEventListener("blur", function () {
     resetEmail();
-    if(!isValidEmailEnding($("#your-email").val(), validEndings)) {
+    if (!isValidEmailEnding($("#your-email").val(), validEndings)) {
         emailInput.classList.add("error");
         $(".lead-gen_email-invalid").removeClass("hide");
         checkAnswer();
@@ -273,7 +279,7 @@ function checkAnswer() {
             checkNextButton(true);
         }
     }
-    else if(questionType == "contact-method") {
+    else if (questionType == "contact-method") {
         if ($(".lead-gen_question").eq(currentQuestion).find(".lead-gen_radio-button.is-active").length <= 0) {
             $("[name=how_would_you_like_us_to_reach_out]").val("");
             checkNextButton(false);
