@@ -347,7 +347,7 @@ function submitForm() {
         });
     }
     else {
-        window.location.href = "/staging/thank-you";
+        waitUntilHubspotSubmit();
     }
 }
 
@@ -355,10 +355,20 @@ window.addEventListener('message', function (event) {
 
     if (event.data.type !== 'hsFormCallback') return;
 
-    console.log(event.data.eventName);
     if (event.data.eventName === 'onFormSubmit') {
         setTimeout(() => {
             window.location.href = "/staging/thank-you";
         }, 1000);
     }
 });
+
+function waitUntilHubspotSubmit() {
+    setTimeout(() => {
+        if($("#hubspot-form").find("div").length <= 0) {
+            waitUntilHubspotSubmit();
+        }
+        else {
+            window.location.href = "/staging/thank-you";
+        }
+    }, 250);
+}
