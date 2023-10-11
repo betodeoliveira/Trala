@@ -312,7 +312,7 @@ function checkAnswer() {
             checkNextButton(false);
         }
         else {
-            $("[name=phone]").val($("#dialCode").val());
+            $("[name=phone]").val("+" + iti.getSelectedCountryData().dialCode + phoneInput.value);
             checkNextButton(true);
         }
     }
