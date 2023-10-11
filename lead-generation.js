@@ -1,10 +1,10 @@
 // [KEEP FORM HEIGHT]
-$(window).bind("load resize submit",function(e){
-    $('form').each(function() {
-      var formHeight = $(this).height();
-      $(this).siblings('.w-form-done').css({'min-height': formHeight});
+$(window).bind("load resize submit", function (e) {
+    $('form').each(function () {
+        var formHeight = $(this).height();
+        $(this).siblings('.w-form-done').css({ 'min-height': formHeight });
     });
-  });
+});
 
 // [ VARIABLES ]
 let currentQuestion = 0;
@@ -71,10 +71,17 @@ $(".form_input").on('keyup', function () {
 // [ FIRST ]
 // Check for parameters to populate the fields
 let urlParams = getURLParameters();
-if (urlParams["Email"]) {
-    $("#your-email").val(urlParams["Email"]);
-    $("[name=email]").val(urlParams["Email"]);
-}
+$("#your-email").val(urlParams["Email"]);
+$("[name=email]").val(urlParams["Email"]);
+// UTM
+$("[name=visitID]").val(urlParams["visitID"]);
+$("[name=utm_source]").val(urlParams["utm_source"]);
+$("[name=utm_medium]").val(urlParams["utm_medium"]);
+$("[name=utm_campaign]").val(urlParams["utm_campaign"]);
+$("[name=utm_content]").val(urlParams["utm_content"]);
+$("[name=utm_term]").val(urlParams["utm_term"]);
+$("[name=utm_feeditemid]").val(urlParams["utm_feeditemid"]);
+$("[name=utm_device]").val(urlParams["utm_device"]);
 
 function getURLParameters() {
     let queryString = window.location.search.slice(1);
@@ -372,7 +379,7 @@ window.addEventListener('message', function (event) {
 
 function waitUntilHubspotSubmit() {
     setTimeout(() => {
-        if($("#hubspot-form").find("div").length <= 0) {
+        if ($("#hubspot-form").find("div").length <= 0) {
             waitUntilHubspotSubmit();
         }
         else {
