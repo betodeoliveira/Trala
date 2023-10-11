@@ -281,7 +281,7 @@ function checkAnswer() {
             checkNextButton(false);
         }
         else {
-            $("[name=phone]").val($("#dialCode"));
+            $("[name=phone]").val($("#dialCode").val());
             checkNextButton(true);
         }
     }
