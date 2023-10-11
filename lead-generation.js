@@ -5,7 +5,7 @@ $(window).bind("load resize submit",function(e){
       $(this).siblings('.w-form-done').css({'min-height': formHeight});
     });
   });
-  
+
 // [ VARIABLES ]
 let currentQuestion = 0;
 let totalQuestions = $(".lead-gen_question").length - 1;
@@ -366,7 +366,7 @@ window.addEventListener('message', function (event) {
     if (event.data.eventName === 'onFormSubmit') {
         setTimeout(() => {
             window.location.href = "/staging/thank-you";
-        }, 1000);
+        }, 50);
     }
 });
 
@@ -378,5 +378,5 @@ function waitUntilHubspotSubmit() {
         else {
             window.location.href = "/staging/thank-you";
         }
-    }, 250);
+    }, 50);
 }
