@@ -226,7 +226,7 @@ phoneInput.addEventListener("blur", function () {
     if (phoneInput.value.trim()) {
         if (iti.isValidNumber()) {
             dialCode.value =
-                "+" + iti.getSelectedCountryData().dialCode + input.value;
+                "+" + iti.getSelectedCountryData().dialCode + phoneInput.value;
             validMsg.classList.remove("hide");
         } else {
             phoneInput.classList.add("error");
