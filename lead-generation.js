@@ -181,7 +181,7 @@ let phoneInput = document.querySelector("#your-phone"),
     errorMsg = document.querySelector(".lead-gen_phone-invalid"),
     validMsg = document.querySelector(".lead-gen_phone-valid");
 
-let iti = intlTelInput(input, {
+let iti = intlTelInput(phoneInput, {
     initialCountry: "auto",
     geoIpLookup: function (callback) {
         fetch("https://ipapi.co/json")
@@ -196,8 +196,8 @@ let iti = intlTelInput(input, {
 let updateInputValue = function (event) {
     dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
 };
-input.addEventListener("input", updateInputValue, false);
-input.addEventListener("countrychange", updateInputValue, false);
+phoneInput.addEventListener("input", updateInputValue, false);
+phoneInput.addEventListener("countrychange", updateInputValue, false);
 
 let errorMap = [
     "Valid number",
@@ -209,21 +209,21 @@ let errorMap = [
 ];
 
 let resetPhone = function () {
-    input.classList.remove("error");
+    phoneInput.classList.remove("error");
     errorMsg.innerHTML = "";
     errorMsg.classList.add("hide");
     validMsg.classList.add("hide");
 };
 
-input.addEventListener("blur", function () {
+phoneInput.addEventListener("blur", function () {
     resetPhone();
-    if (input.value.trim()) {
+    if (phoneInput.value.trim()) {
         if (iti.isValidNumber()) {
             dialCode.value =
                 "+" + iti.getSelectedCountryData().dialCode + input.value;
             validMsg.classList.remove("hide");
         } else {
-            input.classList.add("error");
+            phoneInput.classList.add("error");
             let errorCode = iti.getValidationError();
             errorMsg.innerHTML = errorMap[errorCode];
             errorMsg.classList.remove("hide");
@@ -232,8 +232,8 @@ input.addEventListener("blur", function () {
     }
 });
 
-input.addEventListener("change", resetPhone);
-input.addEventListener("keyup", resetPhone);
+phoneInput.addEventListener("change", resetPhone);
+phoneInput.addEventListener("keyup", resetPhone);
 
 // Answer Checker
 function checkAnswer() {
