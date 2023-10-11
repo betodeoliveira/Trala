@@ -1,8 +1,8 @@
 // Get email from url and populate the email field
 let urlParams = getURLParameters();
 if (urlParams["Email"]) {
-    $("#your-email").val(parameters["Email"]);
-    $("[type=email]").val(parameters["Email"]);
+    $("#your-email").val(urlParams["Email"]);
+    $("[type=email]").val(urlParams["Email"]);
 }
 
 
