@@ -1,17 +1,18 @@
+// [ VARIABLES ]
+let currentQuestion = 0;
+let totalQuestions = $(".lead-gen_question").length - 1;
+
 // [ FIRST ]
 // Check for parameters to populate the fields
 let urlParams = getURLParameters();
 if (urlParams["Email"]) {
     $("#your-email").val(urlParams["Email"]);
     $("[type=email]").val(urlParams["Email"]);
+    // Skip first slide if email exists
+    $(".lead-gen_form-next").click();
+    currentQuestion++;
 }
 
-// [ SECOND ]
-// Skip first slide if email is in place
-if($("#your-email").val().length > 0) {
-    // Do a virtual click
-    $(".lead-gen_form-next").click();
-}
 
 
 
@@ -107,8 +108,7 @@ let input = document.querySelector("#phone-number"),
     input.addEventListener("keyup", reset);
 
 
-    let currentQuestion = 0;
-    let totalQuestions = $(".lead-gen_question").length - 1;
+
 
 
     $(".section_lead-gen-intro").css("display", "flex");
