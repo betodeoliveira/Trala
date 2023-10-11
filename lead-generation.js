@@ -1,3 +1,46 @@
+// Get email from url and populate the email field
+let urlParams = getURLParameters();
+if (urlParams["Email"]) {
+    $("#your-email").val(parameters["Email"]);
+    $("[type=email]").val(parameters["Email"]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 let input = document.querySelector("#phone-number"),
         dialCode = document.querySelector(".dial-code"),
         errorMsg = document.querySelector("#lead-gen-invalid-number"),
@@ -90,11 +133,7 @@ let input = document.querySelector("#phone-number"),
     }
 
 
-    let parameters = getURLParameters();
 
-    if (parameters["Email"]) {
-        $("#your-email").val(parameters["Email"]);
-    }
 
 
     $("[lead-gen-start-form]").on("click", function () {
