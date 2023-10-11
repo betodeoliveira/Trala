@@ -1,11 +1,17 @@
-// Get email from url and populate the email field
+// [ FIRST ]
+// Check for parameters to populate the fields
 let urlParams = getURLParameters();
 if (urlParams["Email"]) {
     $("#your-email").val(urlParams["Email"]);
     $("[type=email]").val(urlParams["Email"]);
 }
 
-
+// [ SECOND ]
+// Skip first slide if email is in place
+if($("#your-email").val().length > 0) {
+    // Do a virtual click
+    $(".lead-gen_form-next").click();
+}
 
 
 
