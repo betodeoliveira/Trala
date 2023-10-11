@@ -21,17 +21,13 @@ $(document).keypress(function (event) {
         // Wait until the chekcers are running
         setTimeout(() => {
             nextSlide();
-        }, 500);
+        }, 250);
     }
 });
 // Tab
 $(document).keydown(function (objEvent) {
     if (objEvent.keyCode == 9) {
         objEvent.preventDefault();
-        // Wait until the chekcers are running
-        setTimeout(() => {
-            nextSlide();
-        }, 500);
     }
 });
 // Left Arrow
@@ -162,6 +158,13 @@ $("#your-email").on("keyup", function () {
     resetEmail();
 });
 
+$("#your-email").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        $(this).blur();
+    }
+});
+
 function resetEmail() {
     $(".lead-gen_email-invalid").addClass("hide");
     emailInput.classList.remove("error");
@@ -237,6 +240,13 @@ phoneInput.addEventListener("blur", function () {
         }
     }
 });
+
+$("#your-phone").keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        $(this).blur();
+    }
+})
 
 phoneInput.addEventListener("change", resetPhone);
 phoneInput.addEventListener("keyup", resetPhone);
