@@ -1,11 +1,4 @@
 // [ INIT CONFIG ]
-$(".section_lead-gen-intro").css("display", "none");
-$(".section_lead-gen-form").css("display", "none");
-$(".section_lead-gen-form").css("opacity", "0");
-$(".section_lead-gen-nav").css("display", "none");
-$(".section_lead-gen-nav").css("opacity", "0");
-$(".section_lead-gen-hubspot").css("display", "none");
-$(".section_lead-gen-hubspot").css("opacity", "0");
 $(".lead-gen_radio-button").removeClass("is-active");
 $(".lead-gen_prev-button_wrapper").css("opacity", "0");
 
