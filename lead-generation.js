@@ -106,8 +106,7 @@ $(document).ready(function () {
         $(".section_lead-gen-form").css("opacity", "1");
         $(".section_lead-gen-nav").css("display", "block");
         $(".section_lead-gen-nav").css("opacity", "1");
-        currentQuestion++;
-        $(".w-slider-dot").eq(currentQuestion).trigger('tap');
+        nextSlide();
     }
     else {
         $(".section_lead-gen-intro").css("display", "block");
