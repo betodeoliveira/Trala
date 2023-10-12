@@ -101,11 +101,12 @@ function getURLParameters() {
 // [ SECOND ]
 // If the URL has an email param skip the intro and the first question
 if ($("#your-email").val().length > 0) {
-    nextSlide();
     $(".section_lead-gen-form").css("display", "block");
     $(".section_lead-gen-form").css("opacity", "1");
     $(".section_lead-gen-nav").css("display", "block");
     $(".section_lead-gen-nav").css("opacity", "1");
+    $(".lead-gen_form-next").click();
+    currentQuestion++;
 }
 else {
     $(".section_lead-gen-intro").css("display", "block");
