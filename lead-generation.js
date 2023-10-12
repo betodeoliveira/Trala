@@ -105,8 +105,8 @@ if ($("#your-email").val().length > 0) {
     $(".section_lead-gen-form").css("opacity", "1");
     $(".section_lead-gen-nav").css("display", "block");
     $(".section_lead-gen-nav").css("opacity", "1");
-    $(".lead-gen_form-next").click();
     currentQuestion++;
+    $(".w-slider-dot").eq(currentQuestion).trigger('tap');
 }
 else {
     $(".section_lead-gen-intro").css("display", "block");
