@@ -108,6 +108,7 @@ if ($("#your-email").val().length > 0) {
     nextSlide();
 }
 else {
+    $(".section_lead-gen-intro").css("display", "block");
     $("[lead-gen-start-form]").on("click", function () {
         gsap.to(".section_lead-gen-intro", {
             opacity: 0, duration: 0.25,
@@ -115,12 +116,7 @@ else {
                 $(".section_lead-gen-intro").css("display", "none");
                 gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
                 gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
-                if ($("#your-email").val().length > 0) {
-                    nextSlide();
-                }
-                else {
-                    checkAnswer();
-                }
+                checkAnswer();
             }
         });
         gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
