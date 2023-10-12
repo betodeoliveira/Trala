@@ -11,7 +11,7 @@ let currentQuestion = 0;
 let totalQuestions = $(".lead-gen_question").length - 1;
 
 // [ INIT CONFIG ]
-$(".section_lead-gen-intro").css("display", "flex");
+$(".section_lead-gen-intro").css("display", "none");
 $(".section_lead-gen-form").css("display", "none");
 $(".section_lead-gen-form").css("opacity", "0");
 $(".section_lead-gen-nav").css("display", "none");
@@ -99,26 +99,33 @@ function getURLParameters() {
 }
 
 // [ SECOND ]
-// Starting the form
-$("[lead-gen-start-form]").on("click", function () {
-    gsap.to(".section_lead-gen-intro", {
-        opacity: 0, duration: 0.25,
-        onComplete() {
-            $(".section_lead-gen-intro").css("display", "none");
-            $(".section_lead-gen-form").css("display", "block");
-            $(".section_lead-gen-nav").css("display", "block");
-            gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
-            gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
-            if ($("#your-email").val().length > 0) {
-                nextSlide();
+// If the URL has an email param skip the intro and the first question
+if ($("#your-email").val().length > 0) {
+    $(".section_lead-gen-form").css("display", "block");
+    $(".section_lead-gen-form").css("opacity", "1");
+    $(".section_lead-gen-nav").css("display", "block");
+    $(".section_lead-gen-nav").css("opacity", "1");
+    nextSlide();
+}
+else {
+    $("[lead-gen-start-form]").on("click", function () {
+        gsap.to(".section_lead-gen-intro", {
+            opacity: 0, duration: 0.25,
+            onComplete() {
+                $(".section_lead-gen-intro").css("display", "none");
+                gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
+                gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
+                if ($("#your-email").val().length > 0) {
+                    nextSlide();
+                }
+                else {
+                    checkAnswer();
+                }
             }
-            else {
-                checkAnswer();
-            }
-        }
+        });
+        gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
     });
-    gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
-});
+}
 
 // [ NAVIGATION ]
 function nextSlide() {
