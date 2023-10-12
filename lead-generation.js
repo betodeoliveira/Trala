@@ -114,6 +114,8 @@ else {
             opacity: 0, duration: 0.25,
             onComplete() {
                 $(".section_lead-gen-intro").css("display", "none");
+                $(".section_lead-gen-form").css("display", "block");
+                $(".section_lead-gen-nav").css("display", "block");
                 gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
                 gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
                 checkAnswer();
