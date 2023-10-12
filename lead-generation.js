@@ -102,11 +102,13 @@ $(document).ready(function () {
     // [ SECOND ]
     // If the URL has an email param skip the intro and the first question
     if ($("#your-email").val().length > 0) {
-        $(".section_lead-gen-form").css("display", "block");
-        $(".section_lead-gen-form").css("opacity", "1");
-        $(".section_lead-gen-nav").css("display", "block");
-        $(".section_lead-gen-nav").css("opacity", "1");
         nextSlide();
+        setTimeout(() => {
+            $(".section_lead-gen-form").css("display", "block");
+            $(".section_lead-gen-form").css("opacity", "1");
+            $(".section_lead-gen-nav").css("display", "block");
+            $(".section_lead-gen-nav").css("opacity", "1"); 
+        }, 500);
     }
     else {
         $(".section_lead-gen-intro").css("display", "block");
