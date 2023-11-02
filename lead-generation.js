@@ -418,12 +418,12 @@ $(document).ready(function () {
 
     function setHubSpotAnimStep() {
         $(".time-picker-btn").on("click", function () {
-            gsap.to($("[step-anim-bullet]").eq(1), {opacity: 1, duration: 0.3, delay: 1});
+            gsap.to($("[hubspot-anim-bullet]").eq(1), {opacity: 1, duration: 0.3, delay: 1});
             gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 100%", duration: 1 });
         });
 
         $("[data-selenium-test=" + "back-button" + "]").on("click", function () {
-            gsap.to($("[step-anim-bullet]").eq(1), {opacity: 0, duration: 0.3, delay: 0});
+            gsap.to($("[hubspot-anim-bullet]").eq(1), {opacity: 0, duration: 0.3, delay: 0});
             gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 0%", duration: 1 });
         });
     }
