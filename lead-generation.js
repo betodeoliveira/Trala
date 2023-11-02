@@ -100,6 +100,9 @@ $(document).ready(function () {
     }
 
     // [ SECOND ]
+    // Set the anim step
+    gsap.set($("#mask-path_lead-gen-1"), { drawSVG: "0%  0%" });
+
     // If the URL has an email param skip the intro and the first question
     if ($("#your-email").val().length > 0) {
         nextSlide();
@@ -108,6 +111,8 @@ $(document).ready(function () {
             $(".section_lead-gen-form").css("opacity", "1");
             $(".section_lead-gen-nav").css("display", "block");
             $(".section_lead-gen-nav").css("opacity", "1"); 
+            $(".header-notes_right-component").css("display", "block");
+            gsap.set($("[step-anim-bullet]").eq(0), {opacity: 1});
         }, 500);
     }
     else {
@@ -122,6 +127,7 @@ $(document).ready(function () {
                     gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
                     gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
                     checkAnswer();
+                    setStepAnim("next");
                 }
             });
             gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
