@@ -417,6 +417,7 @@ $(document).ready(function () {
     }
 
     function setHubSpotAnimStep() {
+        gsap.set($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 0%"});
         $(".time-picker-btn").on("click", function () {
             gsap.to($("[hubspot-anim-bullet]").eq(1), {opacity: 1, duration: 0.3, delay: 1});
             gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 100%", duration: 1 });
