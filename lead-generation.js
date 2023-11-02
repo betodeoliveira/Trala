@@ -15,11 +15,12 @@ $(document).ready(function () {
     let currentQuestion = 0;
     let totalQuestions = $(".lead-gen_question").length - 1;
     let stepsDictionary = {
-        "0": "11",
-        "1": "27",
+        "0": "0",
+        "1": "20",
         "2": "50",
-        "3": "67",
-        "4": "90"
+        "3": "70",
+        
+        "4": "100"
     };
 
     // [ KEYBOARD ]
@@ -385,7 +386,6 @@ $(document).ready(function () {
                     $(".section_lead-gen-form").css("display", "none");
                     $(".section_lead-gen-hubspot").css("display", "block");
                     gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
-                    setHubSpotAnimStep();
                 }
             });
         }
@@ -414,18 +414,5 @@ $(document).ready(function () {
                 window.location.href = "/staging/thank-you";
             }
         }, 50);
-    }
-
-    function setHubSpotAnimStep() {
-        gsap.set($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 0%"});
-        $(".time-picker-btn").on("click", function () {
-            gsap.to($("[hubspot-anim-bullet]").eq(1), {opacity: 1, duration: 0.3, delay: 1});
-            gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 100%", duration: 1 });
-        });
-
-        $("[data-selenium-test=" + "back-button" + "]").on("click", function () {
-            gsap.to($("[hubspot-anim-bullet]").eq(1), {opacity: 0, duration: 0.3, delay: 0});
-            gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 0%", duration: 1 });
-        });
     }
 });
