@@ -127,7 +127,7 @@ $(document).ready(function () {
                     gsap.to(".section_lead-gen-form", { opacity: 1, duration: 0.25 });
                     gsap.to(".section_lead-gen-nav", { opacity: 1, duration: 0.25 });
                     checkAnswer();
-                    setStepAnim("next");
+                    setLeadGenAnimStep("next");
                 }
             });
             gsap.to(".header-notes_right-component", { opacity: 0, duration: 0.25 });
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Finish");
             }
             checkAnswer();
-            setStepAnim("next");
+            setLeadGenAnimStep("next");
         }
     }
 
@@ -170,11 +170,11 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Continue");
             }
             checkAnswer();
-            setStepAnim("prev");
+            setLeadGenAnimStep("prev");
         }
     }
 
-    function setStepAnim(direction) {
+    function setLeadGenAnimStep(direction) {
         if(direction == "next") {
             gsap.to($("[step-anim-bullet]").eq(currentQuestion), {opacity: 1, duration: 0.3, delay: 1});
         }
@@ -182,7 +182,7 @@ $(document).ready(function () {
             gsap.to($("[step-anim-bullet]").eq(currentQuestion + 1), {opacity: 0.2, duration: 0.3, delay: 0});
         }
 
-        gsap.to($("#mask-path_lead-gen-1"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 1 });
+        gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 1 });
     }
 
     // [ CHECKERS ]
@@ -371,6 +371,7 @@ $(document).ready(function () {
     }
 
     function submitForm() {
+        gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% 100%", duration: 1 });
         // First submit the hubspot form
         $("#hubspot-form").find("[type=submit]").click();
         // Then submit the one from webflow
@@ -384,6 +385,7 @@ $(document).ready(function () {
                     $(".section_lead-gen-form").css("display", "none");
                     $(".section_lead-gen-hubspot").css("display", "block");
                     gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
+                    setHubSpotAnimStep();
                 }
             });
         }
@@ -412,5 +414,17 @@ $(document).ready(function () {
                 window.location.href = "/staging/thank-you";
             }
         }, 50);
+    }
+
+    function setHubSpotAnimStep() {
+        $(".time-picker-btn").on("click", function () {
+            gsap.to($("[step-anim-bullet]").eq(1), {opacity: 1, duration: 0.3, delay: 1});
+            gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 100%", duration: 1 });
+        });
+
+        $("[data-selenium-test=" + "back-button" + "]").on("click", function () {
+            gsap.to($("[step-anim-bullet]").eq(1), {opacity: 0, duration: 0.3, delay: 0});
+            gsap.to($("#mask-path_hubspot-anim-step"), { drawSVG: "0% 0%", duration: 1 });
+        });
     }
 });
