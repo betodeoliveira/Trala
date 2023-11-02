@@ -14,6 +14,13 @@ $(document).ready(function () {
     // [ VARIABLES ]
     let currentQuestion = 0;
     let totalQuestions = $(".lead-gen_question").length - 1;
+    let stepsDictionary = {
+        "0": "11",
+        "1": "27",
+        "2": "50",
+        "3": "67",
+        "4": "90"
+    };
 
     // [ KEYBOARD ]
     // Enter
@@ -139,6 +146,7 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Finish");
             }
             checkAnswer();
+            setStepAnim();
         }
     }
 
@@ -156,11 +164,15 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Continue");
             }
             checkAnswer();
+            setStepAnim();
         }
     }
 
-    // [ CHECKERS ]
+    function setStepAnim() {
+        gsap.to($("#mask-path_lead-gen-1"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 1 });
+    }
 
+    // [ CHECKERS ]
     // Email Checker
     let emailInput = document.querySelector("#your-email");
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
