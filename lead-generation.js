@@ -111,7 +111,7 @@ $(document).ready(function () {
             $(".section_lead-gen-form").css("opacity", "1");
             $(".section_lead-gen-nav").css("display", "block");
             $(".section_lead-gen-nav").css("opacity", "1"); 
-            $(".header-notes_right-component").css("display", "none");
+            $(".header-notes_right-component").css("opacity", "0");
             gsap.set($("[step-anim-bullet]").eq(0), {opacity: 1});
         }, 500);
     }
