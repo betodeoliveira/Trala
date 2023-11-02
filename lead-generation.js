@@ -3,7 +3,7 @@ $(".lead-gen_radio-button").removeClass("is-active");
 $(".lead-gen_prev-button_wrapper").css("opacity", "0");
 
 $(document).ready(function () {
-    // [KEEP FORM HEIGHT]
+    // [ KEEP FORM HEIGHT ]
     $(window).bind("load resize submit", function (e) {
         $('form').each(function () {
             var formHeight = $(this).height();
@@ -146,7 +146,7 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Finish");
             }
             checkAnswer();
-            setStepAnim();
+            setStepAnim("next");
         }
     }
 
@@ -164,11 +164,18 @@ $(document).ready(function () {
                 $("[lead-gen-next-text]").text("Continue");
             }
             checkAnswer();
-            setStepAnim();
+            setStepAnim("prev");
         }
     }
 
-    function setStepAnim() {
+    function setStepAnim(direction) {
+        if(direction == "next") {
+            gsap.to($("[step-anim-bullet]").eq(currentQuestion), {opacity: 1, duration: 0.3, delay: 1});
+        }
+        else {
+            gsap.to($("[step-anim-bullet]").eq(currentQuestion + 1), {opacity: 0.2, duration: 0.3, delay: 0});
+        }
+
         gsap.to($("#mask-path_lead-gen-1"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 1 });
     }
 
