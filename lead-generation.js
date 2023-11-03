@@ -290,8 +290,13 @@ $(document).ready(function () {
         }
     })
 
-    phoneInput.addEventListener("change", resetPhone);
-    phoneInput.addEventListener("keyup", resetPhone);
+    $("#your-phone").on("change", function () {
+        resetPhone();
+    });
+
+    $("#your-phone").on("keyup", function () {
+        resetPhone();
+    });
 
     // Answer Checker
     function checkAnswer() {
