@@ -176,13 +176,14 @@ $(document).ready(function () {
 
     function setLeadGenAnimStep(direction) {
         if(direction == "next") {
-            gsap.to($("[step-anim-bullet]").eq(currentQuestion), {opacity: 1, duration: 0.3, delay: 1});
+            gsap.to($("[step-anim-bullet]").eq(currentQuestion), {opacity: 1, duration: 0.3, delay: 0.5});
+            
         }
         else {
             gsap.to($("[step-anim-bullet]").eq(currentQuestion + 1), {opacity: 0.2, duration: 0.3, delay: 0});
         }
 
-        gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 1 });
+        gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 0.5 });
     }
 
     // [ CHECKERS ]
