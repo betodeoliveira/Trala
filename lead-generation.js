@@ -251,7 +251,7 @@ $(document).ready(function () {
     phoneInput.addEventListener("countrychange", updateInputValue, false);
 
     let errorMap = [
-        "Valid number",
+        "Check number",
         "Invalid country code",
         "Number is to short",
         "Number is to long",
