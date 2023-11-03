@@ -110,9 +110,9 @@ $(document).ready(function () {
             $(".section_lead-gen-form").css("display", "block");
             $(".section_lead-gen-form").css("opacity", "1");
             $(".section_lead-gen-nav").css("display", "block");
-            $(".section_lead-gen-nav").css("opacity", "1"); 
-            gsap.set(".header-notes_right-component", { opacity: 0});
-            gsap.set($("[step-anim-bullet]").eq(0), {opacity: 1});
+            $(".section_lead-gen-nav").css("opacity", "1");
+            gsap.set(".header-notes_right-component", { opacity: 0 });
+            gsap.set($("[step-anim-bullet]").eq(0), { opacity: 1 });
         }, 500);
     }
     else {
@@ -175,12 +175,12 @@ $(document).ready(function () {
     }
 
     function setLeadGenAnimStep(direction) {
-        if(direction == "next") {
-            gsap.to($("[step-anim-bullet]").eq(currentQuestion), {opacity: 1, duration: 0.3, delay: 0.8});
+        if (direction == "next") {
+            gsap.to($("[step-anim-bullet]").eq(currentQuestion), { opacity: 1, duration: 0.3, delay: 0.8 });
 
         }
         else {
-            gsap.to($("[step-anim-bullet]").eq(currentQuestion + 1), {opacity: 0.2, duration: 0.3, delay: 0});
+            gsap.to($("[step-anim-bullet]").eq(currentQuestion + 1), { opacity: 0.2, duration: 0.3, delay: 0 });
         }
 
         gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% " + stepsDictionary[currentQuestion] + "%", duration: 0.8 });
@@ -273,13 +273,15 @@ $(document).ready(function () {
                 dialCode.value =
                     "+" + iti.getSelectedCountryData().dialCode + phoneInput.value;
                 validMsg.classList.remove("hide");
-            } else {
+            }
+            else {
                 phoneInput.classList.add("error");
                 let errorCode = iti.getValidationError();
                 errorMsg.innerHTML = errorMap[errorCode];
                 errorMsg.classList.remove("hide");
-                checkAnswer();
             }
+            
+            checkAnswer();
         }
     });
 
@@ -291,11 +293,11 @@ $(document).ready(function () {
     })
 
     $("#your-phone").on("change", function () {
-        $(this).blur();
+        resetPhone();
     });
 
     $("#your-phone").on("keyup", function () {
-        $(this).blur();
+        resetPhone();
     });
 
     // Answer Checker
