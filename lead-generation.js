@@ -291,11 +291,11 @@ $(document).ready(function () {
     })
 
     $("#your-phone").on("change", function () {
-        resetPhone();
+        $(this).blur();
     });
 
     $("#your-phone").on("keyup", function () {
-        resetPhone();
+        $(this).blur();
     });
 
     // Answer Checker
