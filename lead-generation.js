@@ -1,3 +1,4 @@
+alert("Hello! I am an alert box!");
 // [ INIT CONFIG ]
 $(".lead-gen_radio-button").removeClass("is-active");
 $(".lead-gen_prev-button_wrapper").css("opacity", "0");
@@ -280,7 +281,7 @@ $(document).ready(function () {
                 errorMsg.innerHTML = errorMap[errorCode];
                 errorMsg.classList.remove("hide");
             }
-            
+
             checkAnswer();
         }
     });
