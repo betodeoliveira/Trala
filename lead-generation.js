@@ -389,6 +389,12 @@ $(document).ready(function () {
             gsap.to(".section_lead-gen-form", {
                 opacity: 0, duration: 0.25,
                 onComplete() {
+                    // Configure the schedule form
+                    $("[name='" + "firstName" + "']").value = "";
+                    $("[name='" + "lastName" + "']").value = "";
+                    $("[name='" + "email" + "']").value = emailInput.val();
+                    $("[name='" + "phone" + "']").value = phoneInput.val();
+
                     $(".section_lead-gen-nav").css("display", "none");
                     $(".section_lead-gen-form").css("display", "none");
                     $(".section_lead-gen-hubspot").css("display", "block");
