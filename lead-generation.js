@@ -385,28 +385,22 @@ $(document).ready(function () {
         // Then submit the one from webflow
         $("#lead-gen-form").submit();
         if ($("#Schedule-a-time-for-call").parent().hasClass("is-active")) {
-            gsap.to(".section_lead-gen-nav", { opacity: 0, duration: 0.25 });
-            gsap.to(".section_lead-gen-form", {
-                opacity: 0, duration: 0.25,
-                onComplete() {
-                    $(".section_lead-gen-nav").css("display", "none");
-                    $(".section_lead-gen-form").css("display", "none");
-                    $(".section_lead-gen-hubspot").css("display", "block");
-                    gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
-                }
-            });
+            // gsap.to(".section_lead-gen-nav", { opacity: 0, duration: 0.25 });
+            // gsap.to(".section_lead-gen-form", {
+            //     opacity: 0, duration: 0.25,
+            //     onComplete() {
+            //         $(".section_lead-gen-nav").css("display", "none");
+            //         $(".section_lead-gen-form").css("display", "none");
+            //         $(".section_lead-gen-hubspot").css("display", "block");
+            //         gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
+            //     }
+            // });
+            window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val() ;
         }
         else {
             waitUntilHubspotSubmit();
         }
     }
-
-    $(".section_lead-gen-hubspot").on("click", ".time-picker-btn", function () {
-        $("[name='" + "firstName" + "']").value  = "";
-        $("[name='" + "lasttName" + "']").value = "";
-        $("[name='" + "email" + "']").value = $("#your-email").val();
-        $("[name='" + "phone" + "']").value = $("#dialCode").val();
-    });
 
     window.addEventListener('message', function (event) {
 
