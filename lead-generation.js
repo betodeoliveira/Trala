@@ -401,7 +401,7 @@ $(document).ready(function () {
         }
     }
 
-    $(".section_lead-gen-hubspot").on("click", "time-picker-btn", function () {
+    $(".section_lead-gen-hubspot").on("click", ".time-picker-btn", function () {
         const fName = document.getElementsByClassName("confirm-firstName-field");
         const lName = document.getElementsByClassName("confirm-lastName-field");
         const email = document.getElementsByClassName("confirm-email-field");
