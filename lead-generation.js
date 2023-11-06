@@ -390,15 +390,15 @@ $(document).ready(function () {
                 opacity: 0, duration: 0.25,
                 onComplete() {
                     // Configure the schedule form
-                    const fName = document.getElementById("UIFormControl-16");
-                    const lName = document.getElementById("UIFormControl-18");
-                    const email = document.getElementById("UIFormControl-20");
-                    const phone = document.getElementById("UIFormControl-22");
+                    const fName = document.getElementsByClassName("confirm-firstName-field");
+                    const lName = document.getElementsByClassName("confirm-lastName-field");
+                    const email = document.getElementsByClassName("confirm-email-field");
+                    const phone = document.getElementsByClassName("confirm-phone-field");
 
-                    fName.value = "";
-                    lName.value = "";
-                    email.value = $("#your-email").val();
-                    phone.value = $("#dialCode").val();
+                    fName[0].value = "";
+                    lName[0].value = "";
+                    email[0].value = $("#your-email").val();
+                    phone[0].value = $("#dialCode").val();
 
                     $(".section_lead-gen-nav").css("display", "none");
                     $(".section_lead-gen-form").css("display", "none");
