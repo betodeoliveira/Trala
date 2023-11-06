@@ -392,8 +392,8 @@ $(document).ready(function () {
                     // Configure the schedule form
                     $("[name='" + "firstName" + "']").value = "";
                     $("[name='" + "lastName" + "']").value = "";
-                    $("[name='" + "email" + "']").value = emailInput.val();
-                    $("[name='" + "phone" + "']").value = phoneInput.val();
+                    $("[name='" + "email" + "']").value = $("#your-email").val();
+                    $("[name='" + "phone" + "']").value = $("#dialCode").val();
 
                     $(".section_lead-gen-nav").css("display", "none");
                     $(".section_lead-gen-form").css("display", "none");
