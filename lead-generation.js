@@ -149,7 +149,12 @@ $(document).ready(function () {
                 gsap.to(".lead-gen_prev-button_wrapper", { opacity: 1, duration: 0.25 });
             }
             if (currentQuestion >= totalQuestions) {
-                $("[lead-gen-next-text]").text("Finish");
+                if ($("#Schedule-a-time-for-call").parent().hasClass("is-active")) {
+                    $("[lead-gen-next-text]").text("Schedule Time");
+                }
+                else {
+                    $("[lead-gen-next-text]").text("Finish");
+                }
             }
             checkAnswer();
             setLeadGenAnimStep("next");
