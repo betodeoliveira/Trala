@@ -407,7 +407,7 @@ $(document).ready(function () {
 
         if (event.data.eventName === 'onFormSubmit') {
             setTimeout(() => {
-                window.location.href = "/staging/thank-you";
+                window.location.href = "/thank-you-3";
             }, 50);
         }
     });
@@ -418,7 +418,7 @@ $(document).ready(function () {
                 waitUntilHubspotSubmit();
             }
             else {
-                window.location.href = "/staging/thank-you";
+                window.location.href = "/thank-you-3";
             }
         }, 50);
     }
