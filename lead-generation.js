@@ -402,15 +402,10 @@ $(document).ready(function () {
     }
 
     $(".section_lead-gen-hubspot").on("click", ".time-picker-btn", function () {
-        const fName = document.getElementsByClassName("confirm-firstName-field");
-        const lName = document.getElementsByClassName("confirm-lastName-field");
-        const email = document.getElementsByClassName("confirm-email-field");
-        const phone = document.getElementsByClassName("confirm-phone-field");
-
-        fName[0].value = "";
-        lName[0].value = "";
-        email[0].value = $("#your-email").val();
-        phone[0].value = $("#dialCode").val();
+        $("[name='" + "firstName" + "']").value  = "";
+        $("[name='" + "lasttName" + "']").value = "";
+        $("[name='" + "email" + "']").value = $("#your-email").val();
+        $("[name='" + "phone" + "']").value = $("#dialCode").val();
     });
 
     window.addEventListener('message', function (event) {
