@@ -389,17 +389,6 @@ $(document).ready(function () {
             gsap.to(".section_lead-gen-form", {
                 opacity: 0, duration: 0.25,
                 onComplete() {
-                    // Configure the schedule form
-                    const fName = document.getElementsByClassName("confirm-firstName-field");
-                    const lName = document.getElementsByClassName("confirm-lastName-field");
-                    const email = document.getElementsByClassName("confirm-email-field");
-                    const phone = document.getElementsByClassName("confirm-phone-field");
-
-                    fName[0].value = "";
-                    lName[0].value = "";
-                    email[0].value = $("#your-email").val();
-                    phone[0].value = $("#dialCode").val();
-
                     $(".section_lead-gen-nav").css("display", "none");
                     $(".section_lead-gen-form").css("display", "none");
                     $(".section_lead-gen-hubspot").css("display", "block");
@@ -411,6 +400,18 @@ $(document).ready(function () {
             waitUntilHubspotSubmit();
         }
     }
+
+    $(".section_lead-gen-hubspot").on("click", "time-picker-btn", function () {
+        const fName = document.getElementsByClassName("confirm-firstName-field");
+        const lName = document.getElementsByClassName("confirm-lastName-field");
+        const email = document.getElementsByClassName("confirm-email-field");
+        const phone = document.getElementsByClassName("confirm-phone-field");
+
+        fName[0].value = "";
+        lName[0].value = "";
+        email[0].value = $("#your-email").val();
+        phone[0].value = $("#dialCode").val();
+    });
 
     window.addEventListener('message', function (event) {
 
