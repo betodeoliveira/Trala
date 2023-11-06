@@ -381,7 +381,7 @@ $(document).ready(function () {
     function submitForm() {
         gsap.to($("#mask-path_lead-gen-anim-step"), { drawSVG: "0% 100%", duration: 1 });
         // First submit the hubspot form
-        $("#hubspot-form").find("[type=submit]").click();
+        $("#lead-gen-hubspot-form").find("[type=submit]").click();
         // Then submit the one from webflow
         $("#lead-gen-form").submit();
         if ($("#Schedule-a-time-for-call").parent().hasClass("is-active")) {
@@ -414,7 +414,7 @@ $(document).ready(function () {
 
     function waitUntilHubspotSubmit() {
         setTimeout(() => {
-            if ($("#hubspot-form").find("div").length <= 0) {
+            if ($("#lead-gen-hubspot-form").find("div").length <= 0) {
                 waitUntilHubspotSubmit();
             }
             else {
