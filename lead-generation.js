@@ -413,6 +413,7 @@ $(document).ready(function () {
 
         if (event.data.eventName === 'onFormSubmit') {
             setTimeout(() => {
+                fbq('trackCustom', 'TypeformSubmit');
                 window.location.href = "/thank-you-3";
             }, 50);
         }
@@ -424,6 +425,7 @@ $(document).ready(function () {
                 waitUntilHubspotSubmit();
             }
             else {
+                fbq('trackCustom', 'TypeformSubmit');
                 window.location.href = "/thank-you-3";
             }
         }, 50);
