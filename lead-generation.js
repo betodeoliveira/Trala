@@ -400,7 +400,10 @@ $(document).ready(function () {
             //         gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
             //     }
             // });
-            window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
+            fbq('trackCustom', 'TypeformSubmit');
+            setTimeout(() => {
+                window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
+            }, 250);
         }
         else {
             waitUntilHubspotSubmit();
