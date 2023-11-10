@@ -400,7 +400,7 @@ $(document).ready(function () {
             //         gsap.to(".section_lead-gen-hubspot", { opacity: 1, duration: 0.25 });
             //     }
             // });
-            window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val() ;
+            window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
         }
         else {
             waitUntilHubspotSubmit();
@@ -412,10 +412,10 @@ $(document).ready(function () {
         if (event.data.type !== 'hsFormCallback') return;
 
         if (event.data.eventName === 'onFormSubmit') {
+            fbq('trackCustom', 'TypeformSubmit');
             setTimeout(() => {
-                fbq('trackCustom', 'TypeformSubmit');
                 window.location.href = "/thank-you-3";
-            }, 50);
+            }, 250);
         }
     });
 
@@ -426,7 +426,9 @@ $(document).ready(function () {
             }
             else {
                 fbq('trackCustom', 'TypeformSubmit');
-                window.location.href = "/thank-you-3";
+                setTimeout(() => {
+                    window.location.href = "/thank-you-3";
+                }, 250);
             }
         }, 50);
     }
