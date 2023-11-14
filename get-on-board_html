@@ -1,0 +1,144 @@
+<!-- Telephone Input Style -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css" rel="stylesheet" />
+<!-- Telephone Input Code -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"></script>
+
+<!-- Form Code -->
+<script>
+    var Webflow = Webflow || [];
+    Webflow.push(function () {
+        // [ Check for parameters to populate the fields ]
+        let urlParams = getURLParameters();
+        $("#your-email").val(urlParams["Email"]);
+
+        function getURLParameters() {
+            let queryString = window.location.search.slice(1);
+            let params = {};
+
+            if (queryString) {
+                var paramArray = queryString.split('&');
+                for (let i = 0; i < paramArray.length; i++) {
+                    var param = paramArray[i].split('=');
+                    params[param[0]] = decodeURIComponent(param[1]);
+                }
+            }
+
+            return params;
+        }
+
+        // [ Set and configure the email field ]
+        let emailInput = document.querySelector("#your-email");
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let validEndings = [".com", ".net", ".org", ".edu", ".gov", ".au", ".ca", ".co", ".de", ".edu", ".fr", ".gov", ".in", ".io", ".net", ".no", ".org", ".uk", ".us", ".br"];
+
+        $("#your-email").on("change", function () {
+            resetEmail();
+        });
+
+        $("#your-email").on("keyup", function () {
+            resetEmail();
+        });
+
+        $("#your-email").keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                $(this).blur();
+            }
+        });
+
+        function resetEmail() {
+            $(".lead-gen_email-invalid").addClass("hide");
+            emailInput.classList.remove("error");
+        };
+
+        emailInput.addEventListener("blur", function () {
+            resetEmail();
+            if (!isValidEmailEnding($("#your-email").val(), validEndings)) {
+                emailInput.classList.add("error");
+                $(".lead-gen_email-invalid").removeClass("hide");
+            }
+        });
+
+        function isValidEmailEnding(email, validEndings) {
+            var emailEnding = email.substring(email.lastIndexOf(".") + 1);
+            return validEndings.includes("." + emailEnding);
+        }
+
+        // [ Set and configure the phone field ]
+        let phoneInput = document.querySelector("#your-phone"),
+            dialCode = document.querySelector(".dial-code"),
+            errorMsg = document.querySelector(".lead-gen_phone-invalid"),
+            validMsg = document.querySelector(".lead-gen_phone-valid");
+
+        let iti = intlTelInput(phoneInput, {
+            initialCountry: "auto",
+            geoIpLookup: function (callback) {
+                fetch("https://ipapi.co/json")
+                    .then(function (res) { return res.json(); })
+                    .then(function (data) { callback(data.country_code); })
+                    .catch(function () { callback("us"); });
+            },
+            placeholderNumberType: "MOBILE",
+            separateDialCode: true
+        });
+
+        let updateInputValue = function (event) {
+            dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
+        };
+        phoneInput.addEventListener("input", updateInputValue, false);
+        phoneInput.addEventListener("countrychange", updateInputValue, false);
+
+        let errorMap = [
+            "Check number",
+            "Invalid country code",
+            "Number is to short",
+            "Number is to long",
+            "Invalid number",
+            "Invalid length",
+        ];
+
+        let resetPhone = function () {
+            phoneInput.classList.remove("error");
+            errorMsg.innerHTML = "";
+            errorMsg.classList.add("hide");
+            validMsg.classList.add("hide");
+        };
+
+        phoneInput.addEventListener("blur", function () {
+            resetPhone();
+            if (phoneInput.value.trim()) {
+                if (iti.isValidNumber()) {
+                    dialCode.value =
+                        "+" + iti.getSelectedCountryData().dialCode + phoneInput.value;
+                    validMsg.classList.remove("hide");
+                }
+                else {
+                    phoneInput.classList.add("error");
+                    let errorCode = iti.getValidationError();
+                    errorMsg.innerHTML = errorMap[errorCode];
+                    errorMsg.classList.remove("hide");
+                }
+            }
+        });
+
+        // [ Direct the user to the correct url after submit ]
+        $('#lead-form').submit((event) => {
+            if ($(".lead-gen_email-invalid").hasClass("hide") && $(".lead-gen_phone-invalid").hasClass("hide")) {
+                let contactType = $("#contact-type").val();
+
+                if (contactType == "Call me") {
+                    window.location.href = "/thank-you-3";
+                }
+                else {
+                    window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
+                }
+            }
+            else {
+                // Prevent form to submit
+                return false;
+            }
+
+        });
+    });
+</script>
