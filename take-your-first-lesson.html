@@ -1,0 +1,93 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"></script>
+
+<!-- Lead Form -->
+<script>
+    let phoneInput = document.querySelector("#your-phone"),
+        dialCode = document.querySelector(".dial-code"),
+        errorMsg = document.querySelector(".lead-gen_phone-invalid"),
+        validMsg = document.querySelector(".lead-gen_phone-valid");
+
+    let iti = intlTelInput(phoneInput, {
+        initialCountry: "auto",
+        geoIpLookup: function (callback) {
+            fetch("https://ipapi.co/json")
+                .then(function (res) { return res.json(); })
+                .then(function (data) { callback(data.country_code); })
+                .catch(function () { callback("us"); });
+        },
+        placeholderNumberType: "MOBILE",
+        separateDialCode: true
+    });
+
+    let updateInputValue = function (event) {
+        dialCode.value = "+" + iti.getSelectedCountryData().dialCode;
+    };
+    phoneInput.addEventListener("input", updateInputValue, false);
+    phoneInput.addEventListener("countrychange", updateInputValue, false);
+
+    let errorMap = [
+        "Check number",
+        "Invalid country code",
+        "Number is to short",
+        "Number is to long",
+        "Invalid number",
+        "Invalid length",
+    ];
+
+    let resetPhone = function () {
+        phoneInput.classList.remove("error");
+        errorMsg.innerHTML = "";
+        errorMsg.classList.add("hide");
+        validMsg.classList.add("hide");
+    };
+
+    phoneInput.addEventListener("blur", function () {
+        resetPhone();
+        if (phoneInput.value.trim()) {
+            if (iti.isValidNumber()) {
+                dialCode.value =
+                    "+" + iti.getSelectedCountryData().dialCode + phoneInput.value;
+                validMsg.classList.remove("hide");
+            }
+            else {
+                phoneInput.classList.add("error");
+                let errorCode = iti.getValidationError();
+                errorMsg.innerHTML = errorMap[errorCode];
+                errorMsg.classList.remove("hide");
+            }
+
+            checkAnswer();
+        }
+    });
+</script>
+
+<!-- Trala Method -->
+<script>
+    let tralaMethodMatchMedia = gsap.matchMedia();
+
+    let tralaMethodTimeline = gsap.timeline({ paused: true });
+
+    tralaMethodTimeline.fromTo($("[trala-method-path]"), { drawSVG: "0% 0%" }, { drawSVG: "0% 100%", duration: 1 });
+    tralaMethodTimeline.fromTo(".trala-method_steps-item", { y: "4rem", opacity: 0 }, { y: "0rem", opacity: 1, duration: 1, stagger: 0.125, ease: "elastic.out(1, 0.8)" }, "<0.25");
+
+    tralaMethodMatchMedia.add("(min-width: 768px)", () => {
+
+        ScrollTrigger.create({
+            trigger: $(".trala-method_steps-list"),
+            start: "bottom bottom",
+            end: "+=0",
+            onEnter: () => tralaMethodTimeline.play()
+        });
+    });
+
+    tralaMethodMatchMedia.add("(max-width: 767px)", () => {
+
+        ScrollTrigger.create({
+            trigger: $(".trala-method_steps-list"),
+            start: "center bottom",
+            end: "+=0",
+            onEnter: () => tralaMethodTimeline.play()
+        });
+    });
+</script>
