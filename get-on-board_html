@@ -165,7 +165,7 @@
                     waitUntilHubspotSubmit();
                 }
                 else {
-                    // fbq('trackCustom', 'TypeformSubmit');
+                    fbq('trackCustom', 'TypeformSubmit');
                     setTimeout(() => {
                         let contactType = $("#contact-type").val();
 
