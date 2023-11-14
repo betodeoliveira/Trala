@@ -8,9 +8,26 @@
 <script>
     var Webflow = Webflow || [];
     Webflow.push(function () {
+        // [ Keep form height ]
+        $(window).bind("load resize submit", function (e) {
+            $('form').each(function () {
+                var formHeight = $(this).height();
+                $(this).siblings('.w-form-done').css({ 'min-height': formHeight });
+            });
+        });
+
         // [ Check for parameters to populate the fields ]
         let urlParams = getURLParameters();
         $("#your-email").val(urlParams["Email"]);
+        // UTM
+        $("[name=visitID]").val(urlParams["visitID"]);
+        $("[name=utm_source]").val(urlParams["utm_source"]);
+        $("[name=utm_medium]").val(urlParams["utm_medium"]);
+        $("[name=utm_campaign]").val(urlParams["utm_campaign"]);
+        $("[name=utm_content]").val(urlParams["utm_content"]);
+        $("[name=utm_term]").val(urlParams["utm_term"]);
+        $("[name=utm_feeditemid]").val(urlParams["utm_feeditemid"]);
+        $("[name=utm_device]").val(urlParams["utm_device"]);
 
         function getURLParameters() {
             let queryString = window.location.search.slice(1);
@@ -125,14 +142,15 @@
         // [ Direct the user to the correct url after submit ]
         $('#lead-form').submit((event) => {
             if ($(".lead-gen_email-invalid").hasClass("hide") && $(".lead-gen_phone-invalid").hasClass("hide")) {
-                let contactType = $("#contact-type").val();
-
-                if (contactType == "Call me") {
-                    window.location.href = "/thank-you-3";
-                }
-                else {
-                    window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
-                }
+                // Populate the hubspot form
+                $("[name=email]").val($("#your-email").val());
+                $("[name=violin_experience]").val($("#your-experience").val());
+                $("[name=age]").val($("#your-age").val());
+                $("[name=how_would_you_like_us_to_reach_out]").val($("#contact-type").val());
+                $("[name=phone]").val("+" + iti.getSelectedCountryData().dialCode + phoneInput.value);
+                // First submit the hubspot form
+                $("#lead-gen-hubspot-form").find("[type=submit]").click();
+                waitUntilHubspotSubmit();
             }
             else {
                 // Prevent form to submit
@@ -140,5 +158,26 @@
             }
 
         });
+
+        function waitUntilHubspotSubmit() {
+            setTimeout(() => {
+                if ($("#lead-gen-hubspot-form").find("div").length <= 0) {
+                    waitUntilHubspotSubmit();
+                }
+                else {
+                    // fbq('trackCustom', 'TypeformSubmit');
+                    setTimeout(() => {
+                        let contactType = $("#contact-type").val();
+
+                        if (contactType == "Call me") {
+                            window.location.href = "/thank-you-3";
+                        }
+                        else {
+                            window.location.href = "/hubspot-meeting-embed?Email=" + $("#your-email").val() + "&phone=" + $("#dialCode").val();
+                        }
+                    }, 250);
+                }
+            }, 50);
+        }
     });
 </script>
