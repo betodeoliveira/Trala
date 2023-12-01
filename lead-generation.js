@@ -416,6 +416,7 @@ $(document).ready(function () {
 
         if (event.data.eventName === 'onFormSubmit') {
             fbq('trackCustom', 'TypeformSubmit');
+            rubix('conv', 'order', '0');
             setTimeout(() => {
                 window.location.href = "/thank-you-3";
             }, 250);
@@ -429,6 +430,7 @@ $(document).ready(function () {
             }
             else {
                 fbq('trackCustom', 'TypeformSubmit');
+                rubix('conv', 'order', '0');
                 setTimeout(() => {
                     window.location.href = "/thank-you-3";
                 }, 250);
