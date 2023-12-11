@@ -1,0 +1,20 @@
+<script>
+    // If empty messages appears hide the "Back to the top:  button
+    let visibilityTimeout;
+    function toggleVisibility() {
+        if(visibilityTimeout) {
+            return;
+        }
+        visibilityTimeout = setTimeout(() => {
+            visibilityTimeout = null;
+            if ($('.filters-empty_component').is(':visible')) {
+                $('.articles-back-to-top_component').hide();
+            }
+            else {
+                $('.articles-back-to-top_component').show();
+            }
+        }, 100);
+    }
+
+    $('.articles_list').on('DOMSubtreeModified', toggleVisibility);
+</script>
